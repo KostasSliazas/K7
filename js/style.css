@@ -1,0 +1,247 @@
+/*
+ * K7 Images Gallery CSS Styles
+ * Copyright (c) 2025 [Kostas Šliažas]
+ * Licensed under the ISC License. See LICENSE file for details.
+ */
+@keyframes r {
+  to {
+    transform: rotate(360deg);
+  }
+}
+#k7 {
+  user-select: none;
+  background: var(--color2, #223);
+  color: #aaa;
+  position: fixed;
+  z-index: 999999;
+  transition: transform 0.2s;
+}
+#k7 #in7 img {
+  background: var(--color1, #334);
+  max-height: 100%;
+  max-width: 100%;
+}
+#k7 *,
+#k7 ::after,
+#k7 ::before {
+  font: 12px/4 sans-serif;
+  position: absolute;
+  box-sizing: border-box;
+  display: inline-block;
+}
+#k7 button * {
+  z-index: -1;
+  pointer-events: none;
+}
+#k7 #in7 {
+  text-align: center;
+}
+#k7 #pla,
+#k7 #fln {
+  text-indent: 50px;
+  white-space: nowrap;
+  bottom: 24px;
+  height: 48px;
+}
+#k7 #alt {
+  right: 50px;
+}
+#k7 #alt,
+#k7 #in7,
+#k7 #in7 img,
+#k7 #sta {
+  position: relative;
+}
+#k7 #sta {
+  text-indent: 0;
+}
+#k7 #blt,
+#k7 #btr {
+  width: 20%;
+  min-width: 96px;
+  border: 0;
+  height: 100%;
+  border-radius: 0;
+}
+#k7 #lft::after,
+#k7 #rgt::after {
+  padding: 9px;
+  top: 14px;
+}
+#k7 #lft::after {
+  border-width: 2px 0 0 2px;
+  left: 14px;
+}
+#k7 #rgt::after {
+  right: 14px;
+  border-width: 2px 2px 0 0;
+}
+#k7 #blt:hover #lft::after {
+  left: 9px;
+}
+#k7 #btr:hover #rgt::after {
+  right: 9px;
+}
+#k7 #cls::after,
+#k7 #cls::before {
+  border-width: 0 0 0 2px;
+  height: 30px;
+  left: 23px;
+  top: 10px;
+}
+#k7 #pli::before,
+#k7 #spn {
+  border-radius: 50%;
+  height: 24px;
+  width: 24px;
+}
+#k7 #spn {
+  animation: r 0.3s linear infinite;
+  border-color: transparent #aaa;
+  left: 50%;
+  margin: -12px 0 0-12px;
+  top: 50%;
+}
+#k7 #dwl {
+  border-radius: 0 0 2px 2px;
+  top: 27px;
+  height: 6px;
+  width: 24px;
+  border-top: 0;
+}
+#k7 #pli::before {
+  transition: 0.2s border-radius;
+  top: 12px;
+}
+#k7 #pli.atc::before {
+  border-radius: 4px;
+}
+#k7 #pli::after {
+  border-color: transparent #fff;
+  border-width: 5px 0 5px 12px;
+  left: 19px;
+  top: 19px;
+  width: 10px;
+}
+#k7 #pli.atc::after {
+  border-width: 0 2px;
+  padding-top: 10px;
+}
+#k7 #dlf::after {
+  border-width: 0 0 2px 2px;
+  bottom: 21px;
+  height: 12px;
+  left: 18px;
+  width: 12px;
+}
+#k7 #dlf::before {
+  background: #fff;
+  height: 18px;
+  left: 23px;
+  top: 9px;
+  width: 2px;
+}
+#k7 #cls {
+  top: 24px;
+}
+#k7 #dwl,
+#k7 #pli::before {
+  left: 12px;
+}
+#k7 #cls,
+#k7 #rgt,
+#k7 #fln {
+  right: 24px;
+  text-align: right;
+}
+#k7 #pla,
+#k7 #lft {
+  left: 24px;
+}
+#k7 #in7 img,
+#k7 .trn {
+  top: 50%;
+  z-index: -1;
+  transform: translateY(-50%);
+}
+#k7 .rtp::after,
+#k7 .rtp::before {
+  transform: rotate(45deg);
+}
+#k7 .rtm::after {
+  transform: rotate(-45deg);
+}
+#k7 .w10,
+#k7.w10 {
+  height: 100%;
+  width: 100%;
+}
+#k7 .bor,
+#k7 .bra::after,
+#k7 .brb::before {
+  border: 2px solid #fff;
+}
+#k7 .but {
+  background: 0 0;
+  height: 48px;
+  width: 48px;
+  border-radius: 50%;
+  border: 0;
+  cursor: pointer;
+  transition: opacity 0.1s 0.2s;
+  margin: 0;
+  padding: 0;
+}
+#k7 .but::after,
+#k7 .but::before {
+  content: '';
+}
+#k7 .but:focus,
+#k7 .but:hover,
+#k7 .but:hover span {
+  background: rgba(7, 7, 7, 0.2);
+  opacity: 1;
+  outline: 0;
+}
+#k7 #blt:focus,
+#k7 #btr:focus {
+  background: 0 0;
+}
+#k7 .but:active {
+  opacity: 0.3;
+}
+#k7 .dpn {
+  display: none;
+}
+#k7 .hdi,
+#k7.hdi {
+  opacity: 0;
+}
+#k7 .opa {
+  opacity: 0.7;
+}
+#k7 .rgt {
+  right: 0;
+}
+#k7 .tpo,
+#k7.tpo {
+  top: 0;
+}
+#k7 .lft,
+#k7.lft {
+  left: 0;
+}
+#k7 .fff,
+#k7.fff,
+html.fff {
+  overflow: hidden !important;
+}
+#k7.sca {
+  transform: scale(0);
+}
+@media (min-width: 1024px) {
+  #k7:not(:hover) #cent7 ~ div,
+  #k7:not(:hover) #in7 ~ button {
+    opacity: 0;
+  }
+}

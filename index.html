@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta property="og:url" content="https://kostassliazas.github.io/k7/">
+    <meta property="og:type" content="K7 Images gallery free">
+    <meta property="og:title" content="K7 Images gallery JavaScript">
+    <meta property="og:description" content="Image gallery JavaScript + CSS">
+    <meta property="og:image" content="https://kostassliazas.github.io/k7/photos/photo16.webp">
+    <meta name="title" content="Simple image gallery JavaScript + CSS (full window) with play button">
+    <meta name="description" content="Simple image gallery without external libraries JavaScript(vanilla) + CSS">
+    <meta name="keywords" content="gallery,image,JavaScript,vanilla,photo,CSS,full,screen,play,auto,buttons">
+    <meta name="language" content="English">
+    <meta name="author" content="Kostas Šliažas">
+    <title>K7 Images gallery</title>
+    <link rel="canonical" href="https://kostassliazas.github.io/image-gallery.io/">
+    <link rel="preload" href="css/style.page.min.css" as="style">
+    <link rel="stylesheet" href="css/style.page.min.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    <script defer src="js/k7.min.js?v=7"></script>
+    <script defer src="js/main.min.js?v=7"></script>
+  </head>
+
+  <body class="back">
+    <header>
+      <div class="header">
+        <h1>K7 Images Gallery — A Simple JavaScript Image Gallery</h1>
+      </div>
+      <nav class="nav" id="topnav">
+        <button id="menu">menu</button>
+        <ul id="nav">
+          <li><a href="#wallpapers">Wallpapers</a></li>
+          <li><a href="#photos">Photos</a></li>
+          <li><a href="#configuration">Configuration</a></li>
+          <li><a href="#about">About</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <div class="main">
+
+        <div class="wrp">
+          <div id="wallpapers" class="center">
+            <h1>wallpapers</h1>
+            <div class="images-container images">
+              <img src="wallpapers/tools.svg" alt="tools.svg" loading="lazy">
+              <img src="wallpapers/cubes.webp" alt="cubes.webp" loading="lazy">
+              <img src="wallpapers/antifailsylium.webp" alt="cubes.webp" loading="lazy">
+              <img src="wallpapers/earth.webp" alt="earth.webp" loading="lazy">
+              <img src="wallpapers/keyboard.webp" alt="keyboard.webp" loading="lazy">
+              <img src="wallpapers/sea.webp" alt="sea.webp" loading="lazy">
+              <img src="wallpapers/grass.webp" alt="grass.webp" loading="lazy">
+            </div>
+          </div>
+        </div>
+
+        <div class="wrp">
+          <div id="photos" class="center">
+            <h1>photos</h1>
+            <div class="images-container images">
+              <img src="photos/photo01.webp" loading="lazy" alt="photo01">
+              <img src="photos/photo02.webp" loading="lazy" alt="photo02">
+              <img src="photos/photo03.webp" loading="lazy" alt="photo03">
+              <img src="photos/photo04.webp" loading="lazy" alt="photo04">
+              <img src="photos/photo05.webp" loading="lazy" alt="photo05">
+              <img src="photos/photo06.webp" loading="lazy" alt="photo06">
+              <img src="photos/photo07.webp" loading="lazy" alt="photo07">
+              <img src="photos/photo08.webp" loading="lazy" alt="photo08">
+              <img src="photos/photo16.webp" loading="lazy" alt="photo16" data-ext="webp">
+            </div>
+          </div>
+        </div>
+
+        <div class="wrp" id="configuration">
+
+          <h1>Custom Image Extensions and Other Configuration</h1>
+          <p>To override the default extension, add a data-ext attribute to the &lt;img&gt; tag&mdash;e.g.,
+            &lt;img src=&quot;photos/photo16.webp&quot; loading=&quot;lazy&quot; alt=&quot;photo16&quot; data-ext=&quot;webp&quot;&gt;.
+            This replaces the default .jpg extension with .webp for higher resolution loading. If the data-ext attribute is set, it will override the default extension. If not, the extensions should match (e.g., .jpg remains .jpg). The dataset extension (index.dataset.ext ||) can be removed if unnecessary, as a micro-optimization. It does not need to be applied to .svg files.</p>
+          <p>Configurations start at line 25, end at line 34. [// user config].</p>
+          <p>This image gallery should ideally maintain image proportions, but it can be adjusted differently by setting, for example: #k7 img { width: 100%; height: 100%; }. Background colors can be modified by adding, for instance: :root{ --color1: #ee7; --color2: #777; }</p>
+          <p>Compiled with Google Closure: google-closure-compiler -O ADVANCED k7.js --js_output_file k7.min.js</p>
+        </div>
+        <div class="wrp" id="about">
+          <h1>About</h1>
+          <p>This image gallery features a full-window mode and automatically hides buttons when the cursor moves out of the window. It includes a transparent, clickable background that disappears when clicked. The gallery supports autoplay and includes a download button for images, but these can be hidden if not needed. Built with vanilla JavaScript, it is lightweight, with a total size of approximately 7.7KB. This gallery is not AI-generated it has been tested for years and improved over the past few years. I'm sorry for the font which I created for the fun project: <a href="https://kostassliazas.github.io/project-k/" target="_blank" rel="noopener noreferrer">https://kostassliazas.github.io/project-k/</a></p>
+        </div>
+
+        <div class="grid-container samebg">
+          <div class="a1">
+            <div class="wrpko">
+              <div class="korta">
+                <div class="sele galas">
+                  <p>A collection of visually stunning wallpapers created through experiments with
+                    <a href="https://www.blender.org/" target="_blank" rel="nofollow noopener noreferrer">Blender 3D</a> and/or
+                    <a href="https://inkscape.org/" target="_blank" rel="nofollow noopener noreferrer">Inkscape</a>.
+                    Each design explores unique shapes, lighting, and textures, blending creativity and technology to produce mesmerizing visuals perfect for desktops and backgrounds.
+                  </p>
+                </div>
+                <div class="sele priekis">
+                  <img src="wallpapers/tools.svg" alt="tools.svg"><span>WALLPAPERS</span>
+                  <div class="rbtn"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="a2">
+            <div class="wrpko">
+              <div class="korta">
+                <div class="sele galas">
+                  <p>A diverse collection of random photos captured in various locations, showcasing spontaneous moments, natural beauty, and everyday scenes. These images highlight the art of finding visual interest in unexpected places and celebrating the charm of ordinary life.</p>
+                </div>
+                <div class="sele priekis">
+                  <img src="photos/photo16.webp" alt="photo16.webp"><span>PHOTOS</span>
+                  <div class="rbtn"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+    <footer>
+      <p>2025 by Kostas Šliažas</p>
+    </footer>
+  </body>
+
+</html>
