@@ -1,6 +1,9 @@
+# K7 Images Gallery — A Simple JavaScript Image Gallery
 
-### K7 Images Gallery — A Simple JavaScript Image Gallery
-
+## Table of Contents
+- [Custom Image Extensions and Other Configuration](#custom-image-extensions-and-other-configuration)
+- [Build Instructions](#build-instructions)
+- [About](#about)
 
 ## Custom Image Extensions and Other Configuration
 
@@ -37,9 +40,11 @@ google-closure-compiler -O ADVANCED k7.js --js_output_file k7.min.js
 
 ## About
 
+Check out the demo: [K7 Image Gallery](https://kostassliazas.github.io/K7/)
+
 This image gallery includes the following features:
 - **Full-window mode** with buttons that auto-hide when the cursor moves out of the window.
 - **Transparent, clickable background** that disappears on click.
 - **Autoplay support** with optional download buttons for images (can be hidden).
 - Built with **vanilla JavaScript** for lightweight performance (~7.7KB in size).
-- Tested and improved over the years.
+- Tested and improved over the years for stability and ease of use.
