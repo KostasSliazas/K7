@@ -30,6 +30,7 @@ To modify background colors, update the CSS variables like so:
   --color2: #777;
 }
 ```
+Note: There's no need to include a separate stylesheet; all styles are managed directly in JavaScript.
 
 ## Build Instructions
 
