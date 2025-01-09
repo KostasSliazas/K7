@@ -43,6 +43,3 @@ This image gallery includes the following features:
 - **Autoplay support** with optional download buttons for images (can be hidden).
 - Built with **vanilla JavaScript** for lightweight performance (~7.7KB in size).
 - Tested and improved over the years.
-
-This gallery is **not AI-generated**. The font used in the project was custom-made for fun.  
-Check out the related project: [Kostas Sliazas - Project K](https://kostassliazas.github.io/project-k/)
