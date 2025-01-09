@@ -22,22 +22,17 @@
 
   class UI {
     constructor() {
-      // user config
-
-      this.delay = 1033; // Autoplay timeout
-      this.showButtons = 1; // Display buttons by default. (true = 1 and false = 0)
-      this.showButtonsOnPlay = 1; // Display buttons when autoplay is active.
-      this.extension = 'jpg'; // Additional extension for large resolution (empty = same image extension).
-      this.imageContainer = 'images'; // Class name for the image container. If empty, all images are selected.
-      this.folder = 'large/'; // Folder name or image prefix (prefix should not include '/').
-
-      // everything else for gallery (NO NEED TO CHANGE)
-
       this.imagesArray = []; // Stores all `img` elements found in the container
       this.indexOfImage = null; // Index of the current image being viewed
       this.isAutoPlayOn = false; // State to track autoplay functionality
       this.isActive = false; // State to check if UI is active
       this.timeOut = 0;
+      this.delay = 1510; // Autoplay timeout
+      this.showButtons = 1; // Display buttons by default. (true = 1 and false = 0)
+      this.showButtonsOnPlay = 1; // Display buttons when autoplay is active.
+      this.extension = 'jpg'; // Additional extension for large resolution (empty = same image extension).
+      this.imageContainer = 'images'; // Class name for the image container. If empty, all images are selected.
+      this.folder = 'large/'; // Folder name or image prefix (prefix should not include '/').
     }
 
     addImagesToArray() {
@@ -61,11 +56,14 @@
       return this.imagesArray.length;
     }
 
-    // Start auto-play loop with a delay
     autoPlayLoop() {
       if (!this.isAutoPlayOn) {
-        //set the play button active for first time (playing)
+        // If not set, set it to true once
+        this.isAutoPlayOn = true;
+
+        // Set the play button active for the first time (playing)
         if (this.showButtons) this.play.className = 'but bra brb opa tpo lft atc';
+
         if (!this.showButtonsOnPlay) {
           // Hide buttons if configured not to show during auto-play
           if (this.showButtons) {
@@ -74,20 +72,17 @@
           this.left.className = this.rigt.className = this.clos.className = 'dpn';
         }
       }
-
-      clearTimeout(this.timeOut);
-      this.isAutoPlayOn = true;
-
-      // Set a timeout to move to the next image after a specified delay
-      this.timeOut = setTimeout(() => {
-        if (this.isAutoPlayOn) {
+      if (this.isAutoPlayOn) {
+        // Clear any existing timeout before setting a new one
+        clearTimeout(this.timeOut);
+        // Set a timeout to move to the next image after a specified delay
+        this.timeOut = setTimeout(() => {
           this.right().show();
 
           // Clear auto-play if the last image is reached
           if (this.indexOfImage === this.imagesArray.length - 1) return this.clear();
-          this.autoPlayLoop();
-        }
-      }, this.delay);
+        }, this.delay);
+      }
     }
 
     // Trigger download of the current image
@@ -111,6 +106,11 @@
 
     // Clear auto-play and reset UI state
     clear() {
+      if (this.timeOut) {
+        clearTimeout(this.timeOut); // Cancel the timeout
+        this.timeOut = null; // Reset reference
+      }
+      this.isAutoPlayOn = false;
       //same classes names
       const classNames = 'but bra brb opa';
       // if show buttons compiled display them
@@ -121,7 +121,6 @@
       // always show close button on clear
       this.clos.className = classNames + ' rtm rtp';
       this.leftRightButtonsVisibility();
-      this.isAutoPlayOn = false;
       return this;
     }
 
@@ -173,6 +172,9 @@
         if (this.showButtons) {
           this.alts.innerText = e.target.src.split('/').pop();
         }
+        if (this.isAutoPlayOn) {
+          this.autoPlayLoop();
+        }
       };
 
       this.imgs.onerror = e => {
@@ -218,7 +220,7 @@
           this.downloads();
         }, // Download action
       };
- 
+
       // Map additional keys to specific actions
       k[` `] = k['pli']; // Space for play/pause
       k[`ArrowLeft`] = k['blt']; // Left arrow for left navigation
@@ -267,7 +269,7 @@
       /** @type {HTMLElement} */
       this.imag = element('div', 'id', 'k7', 'class', 'sca hdi fff w10 tpo lft', 'role', 'dialog' /*, 'aria-label', 'k7'*/);
       /** @type {HTMLElement} */
-      this.cent = element('div', 'id', 'cent7', 'class', 'tpo lft w10');
+      this.cent = element('div', 'class', 'tpo lft w10');
       /** @type {HTMLElement} */
       this.left = element('button', 'id', 'blt', 'class', 'but tpo lft', 'aria-label', 'Previous');
       /** @type {HTMLElement} */
