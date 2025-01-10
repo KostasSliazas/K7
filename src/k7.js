@@ -1,3 +1,4 @@
+/* jshint esversion: 6 */
 ((w, d) => {
   const de = d.documentElement; // Reference to the root <html> element
 
@@ -21,47 +22,51 @@
 
   class UI {
     constructor() {
-      this.imagesArray = []; // Stores all `img` elements found in the container
-      this.indexOfImage = null; // Index of the current image being viewed
-      this.isAutoPlayOn = false; // State to track autoplay functionality
-      this.isActive = false; // State to check if UI is active
-      this.timeOut = 0;
+      // user config
+
       this.delay = 1510; // Autoplay timeout
       this.showButtons = 1; // Display buttons by default. (true = 1 and false = 0)
       this.showButtonsOnPlay = 1; // Display buttons when autoplay is active.
       this.extension = 'jpg'; // Additional extension for large resolution (empty = same image extension).
       this.imageContainer = 'images'; // Class name for the image container. If empty, all images are selected.
       this.folder = 'large/'; // Folder name or image prefix (prefix should not include '/').
+
+      // everything else for gallery (NO NEED TO CHANGE)
+
+      this.imagesArray = []; // Stores all `img` elements found in the container
+      this.indexOfImage = null; // Index of the current image being viewed
+      this.isAutoPlayOn = false; // State to track autoplay functionality
+      this.isActive = false; // State to check if UI is active
+      this.timeOut = 0;
     }
 
     addImagesToArray() {
-  const container = d.getElementsByClassName(this.imageContainer).length > 0 ? d.getElementsByClassName(this.imageContainer) : d.getElementsByTagName('body');
-  const containerLength = container.length;
+      const container = d.getElementsByClassName(this.imageContainer).length > 0 ? d.getElementsByClassName(this.imageContainer) : d.getElementsByTagName('body');
+      const containerLength = container.length;
 
-  for (let i = 0; i < containerLength; i++) {
-    const images = container[i].getElementsByTagName('img');
-    for (let img of images) {
-      if (!img.src) {
-        console.warn(`Image missing 'src' attribute:`, img); // Log a warning for debugging
-        continue; // Skip adding this image to the array
+      for (let i = 0; i < containerLength; i++) {
+        const images = container[i].getElementsByTagName('img');
+        for (let img of images) {
+          if (!img.src) {
+            console.warn(`Image missing 'src' attribute:`, img); // Log a warning for debugging
+            continue; // Skip adding this image to the array
+          }
+          this.imagesArray.push(img);
+        }
       }
-      this.imagesArray.push(img);
+
+      const clickHandler = e => this.listenForIG(e);
+
+      if (container[0] && container[0].tagName === 'BODY') {
+        d.body.onclick = clickHandler;
+      } else {
+        for (let i = 0; i < containerLength; i++) {
+          container[i].onclick = clickHandler;
+        }
+      }
+
+      return this.imagesArray.length;
     }
-  }
-
-  const clickHandler = e => this.listenForIG(e);
-
-  if (container[0] && container[0].tagName === 'BODY') {
-    d.body.onclick = clickHandler;
-  } else {
-    for (let i = 0; i < containerLength; i++) {
-      container[i].onclick = clickHandler;
-    }
-  }
-
-  return this.imagesArray.length;
-}
-
 
     autoPlayLoop() {
       if (!this.isAutoPlayOn) {
