@@ -235,8 +235,8 @@ html.fff {
   transform: scale(0);
 }
 @media (min-width: 1024px) {
-  #k7:not(:hover) #cent7 ~ div,
-  #k7:not(:hover) #in7 ~ button {
+  #k7:not(:hover) #cnt ~ div,
+  #k7:not(:hover) #ins ~ button {
     opacity: 0;
   }
 }
