@@ -3,33 +3,31 @@
     transform: rotate(360deg);
   }
 }
+#k7 *,
+#k7 ::after,
+#k7 ::before {
+  box-sizing: border-box;
+  display: inline-block;
+  font: 12px/4 sans-serif;
+  position: absolute;
+}
+#k7 .but * {
+  z-index: -1;
+  pointer-events: none;
+}
 #k7 {
-  user-select: none;
   background: var(--color2, #223);
   color: #aaa;
   position: fixed;
-  z-index: 999999;
+  text-align: center;
   transition: transform 0.2s;
+  user-select: none;
+  z-index: 999999;
 }
 #k7 #ins img {
   background: var(--color1, #334);
   max-height: 100%;
   max-width: 100%;
-}
-#k7 *,
-#k7 ::after,
-#k7 ::before {
-  font: 12px/4 sans-serif;
-  position: absolute;
-  box-sizing: border-box;
-  display: inline-block;
-}
-#k7 button * {
-  z-index: -1;
-  pointer-events: none;
-}
-#k7 #ins {
-  text-align: center;
 }
 #k7 #pla,
 #k7 #fln {
@@ -147,7 +145,6 @@
 #k7 #rgt,
 #k7 #fln {
   right: 24px;
-  text-align: right;
 }
 #k7 #pla,
 #k7 #lft {
@@ -236,7 +233,7 @@ html.fff {
 }
 @media (min-width: 1024px) {
   #k7:not(:hover) #cnt ~ div,
-  #k7:not(:hover) #ins ~ button {
+  #k7:not(:hover) #ins ~ .but {
     opacity: 0;
   }
 }
