@@ -36,25 +36,33 @@
     }
 
     addImagesToArray() {
-      const container = d.getElementsByClassName(this.imageContainer).length > 0 ? d.getElementsByClassName(this.imageContainer) : d.getElementsByTagName('body');
-      const containerLength = container.length;
+  const container = d.getElementsByClassName(this.imageContainer).length > 0 ? d.getElementsByClassName(this.imageContainer) : d.getElementsByTagName('body');
+  const containerLength = container.length;
 
-      for (let i = 0; i < containerLength; i++) {
-        this.imagesArray.push(...container[i].getElementsByTagName('img'));
+  for (let i = 0; i < containerLength; i++) {
+    const images = container[i].getElementsByTagName('img');
+    for (let img of images) {
+      if (!img.src) {
+        console.warn(`Image missing 'src' attribute:`, img); // Log a warning for debugging
+        continue; // Skip adding this image to the array
       }
-
-      const clickHandler = e => this.listenForIG(e);
-
-      if (container[0] && container[0].tagName === 'BODY') {
-        d.body.onclick = clickHandler;
-      } else {
-        for (let i = 0; i < containerLength; i++) {
-          container[i].onclick = clickHandler;
-        }
-      }
-
-      return this.imagesArray.length;
+      this.imagesArray.push(img);
     }
+  }
+
+  const clickHandler = e => this.listenForIG(e);
+
+  if (container[0] && container[0].tagName === 'BODY') {
+    d.body.onclick = clickHandler;
+  } else {
+    for (let i = 0; i < containerLength; i++) {
+      container[i].onclick = clickHandler;
+    }
+  }
+
+  return this.imagesArray.length;
+}
+
 
     autoPlayLoop() {
       if (!this.isAutoPlayOn) {
