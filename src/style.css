@@ -11,7 +11,7 @@
   z-index: 999999;
   transition: transform 0.2s;
 }
-#k7 #in7 img {
+#k7 #ins img {
   background: var(--color1, #334);
   max-height: 100%;
   max-width: 100%;
@@ -28,7 +28,7 @@
   z-index: -1;
   pointer-events: none;
 }
-#k7 #in7 {
+#k7 #ins {
   text-align: center;
 }
 #k7 #pla,
@@ -42,8 +42,8 @@
   right: 50px;
 }
 #k7 #alt,
-#k7 #in7,
-#k7 #in7 img,
+#k7 #ins,
+#k7 #ins img,
 #k7 #sta {
   position: relative;
 }
@@ -153,7 +153,7 @@
 #k7 #lft {
   left: 24px;
 }
-#k7 #in7 img,
+#k7 #ins img,
 #k7 .trn {
   top: 50%;
   z-index: -1;
