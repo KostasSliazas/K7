@@ -97,7 +97,6 @@
             this.clear();
             return;
           }
-
         }, this.delay);
       }
     }
@@ -245,7 +244,7 @@
       // k[`Escape`] = k['cls']; // close gallery
 
       // Unified event handler
-      const switcher = (e) => {
+      const switcher = e => {
         // Only proceed if the gallery is active
         if (this.isActive) {
           // Prevent default behavior and stop event propagation
@@ -279,19 +278,19 @@
 
       // DOM elements setup
       /** @type {HTMLElement} */
-      this.clos = element('button', 'id', 'cls', 'class', 'bra rtp opa but rtm brb', 'aria-label', 'Close', 'title', 'Press Esc to close');
+      this.clos = element('button', 'id', 'cls', 'class', 'bra rtp opa but rtm brb', 'aria-label', 'Close', 'title', 'Close (Esc)');
       /** @type {HTMLElement} */
       this.ilef = element('span', 'id', 'lft', 'class', 'bra rtm opa trn but');
       /** @type {HTMLElement} */
       this.irig = element('span', 'id', 'rgt', 'class', 'bra rtp opa but trn');
       /** @type {HTMLElement} */
-      this.imag = element('div', 'id', 'k7', 'class', 'sca hdi fff w10 tpo lft', 'role', 'dialog' /*, 'aria-label', 'k7'*/);
+      this.imag = element('div', 'id', 'k7', 'class', 'sca hdi fff w10 tpo lft', 'role', 'dialog', 'aria-label', 'Image Gallery');
       /** @type {HTMLElement} */
       this.cent = element('div', 'id', 'cnt', 'class', 'tpo lft w10');
       /** @type {HTMLElement} */
-      this.left = element('button', 'id', 'blt', 'class', 'but tpo lft', 'aria-label', 'Previous');
+      this.left = element('button', 'id', 'blt', 'class', 'but tpo lft', 'aria-label', 'Previous (Left Arrow)');
       /** @type {HTMLElement} */
-      this.rigt = element('button', 'id', 'btr', 'class', 'but tpo rgt', 'aria-label', 'Next');
+      this.rigt = element('button', 'id', 'btr', 'class', 'but tpo rgt', 'aria-label', 'Next (Right Arrow)');
       /** @type {HTMLElement} */
       this.insi = element('div', 'id', 'ins', 'class', 'w10');
       /** @type {HTMLElement} */
