@@ -87,12 +87,17 @@
       if (this.isAutoPlayOn) {
         // Clear any existing timeout before setting a new one
         clearTimeout(this.timeOut);
+
         // Set a timeout to move to the next image after a specified delay
         this.timeOut = setTimeout(() => {
           this.right().show();
 
           // Clear auto-play if the last image is reached
-          if (this.indexOfImage === this.imagesArray.length - 1) return this.clear();
+          if (this.indexOfImage === this.imagesArray.length - 1) {
+            this.clear();
+            return;
+          }
+
         }, this.delay);
       }
     }
@@ -133,7 +138,6 @@
       // always show close button on clear
       this.clos.className = classNames + ' rtm rtp';
       this.leftRightButtonsVisibility();
-      // return this;
     }
 
     leftRightButtonsVisibility() {
@@ -240,27 +244,27 @@
       k[`ArrowRight`] = k['btr']; // Right arrow for right navigation
       // k[`Escape`] = k['cls']; // close gallery
 
-      // Key press handler
-      const switcher = e => {
-        // Get the event key or target ID
-        const ev = e.key || e.target.id;
-
-        // Handle Escape and cls separately
-        if (ev === 'Escape' || ev === 'cls') {
-          this.close();
+      // Unified event handler
+      const switcher = (e) => {
+        // Only proceed if the gallery is active
+        if (this.isActive) {
+          // Prevent default behavior and stop event propagation
+          e.preventDefault();
+          e.stopImmediatePropagation();
+          // Get the event key or target ID
+          const ev = e.key || e.target.id;
+          // Handle Escape and cls separately
+          if (ev === 'Escape' || ev === 'cls') {
+            this.close();
+          }
+          // Check for valid key and other conditions
+          if (!k[ev] || this.isAutoPlayOn || e.isComposing) {
+            this.clear(); // Execute the corresponding action or clear the state if no match
+            return;
+          }
+          // Execute the corresponding action
+          k[ev]();
         }
-
-        // Check for valid key and other conditions
-        if (!k[ev] || this.isAutoPlayOn || !this.isActive || e.isComposing) {
-          this.clear(); // Execute the corresponding action or clear the state if no match
-          return;
-        }
-        // Execute the corresponding action
-        k[ev]();
-
-        // Prevent default behavior and stop event propagation
-        e.preventDefault();
-        e.stopImmediatePropagation();
       };
 
       // Attach event listeners for click and keyboard events with correct context (bind this)
