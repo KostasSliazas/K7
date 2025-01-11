@@ -133,7 +133,7 @@
       // always show close button on clear
       this.clos.className = classNames + ' rtm rtp';
       this.leftRightButtonsVisibility();
-      return this;
+      // return this;
     }
 
     leftRightButtonsVisibility() {
@@ -214,6 +214,7 @@
     }
 
     listeners() {
+      // prettier-ignore
       /** @suppress {missingProperties} */
       const k = {
         'pli': () => {
