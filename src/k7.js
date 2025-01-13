@@ -26,7 +26,7 @@
       this.delay = 1330; // Autoplay timeout
       this.showButtons = 1; // Display buttons by default. (true = 1 and false = 0)
       this.showButtonsOnPlay = 1; // Display buttons when autoplay is active.
-      this.extension = 'jpg'; // Additional extension for large resolution (empty = same image extension).
+      this.extension = ''; // Additional extension for large resolution (empty = same image extension).
       this.container = 'images'; // Class name for the image container. If empty, all images are selected.
       this.folder = 'l/'; // Folder name or image prefix (prefix should not include '/').
 
@@ -161,7 +161,7 @@
       // Generate full file path with folder and extension
       const fileName = imageSource.split('/').pop();
       const arrayFileName = fileName.split('.');
-      const fileNameWithExtension = arrayFileName[0] + '.' + (index.dataset.ext || this.extension || arrayFileName[1]);
+      const fileNameWithExtension = arrayFileName[0] + '.' + (/*index.dataset.ext || */this.extension || arrayFileName[1]);
       const fullNamePrefixed = arrayFileName === 'svg' ? imageSource : imageSource.replace(fileName, this.folder + fileNameWithExtension);
 
       // Activate the UI if not active
