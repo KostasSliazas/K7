@@ -1,7 +1,7 @@
 /* jshint esversion: 6 */
 ((w, d) => {
   const de = d.documentElement; // Reference to the root <html> element
-
+  const getLastPathSegment = path => path.split('/').pop();
   const append = (parentElement, ...childElements) => {
     // Iterate over all child elements passed to the function
     for (let i = 0; i < childElements.length; i++) {
@@ -26,7 +26,7 @@
       this.delay = 1330; // Autoplay timeout
       this.showButtons = 1; // Display buttons by default. (true = 1 and false = 0)
       this.showButtonsOnPlay = 1; // Display buttons when autoplay is active.
-      this.extension = ''; // Additional extension for large resolution (empty = same image extension).
+      this.extension = 'jpg'; // Additional extension for large resolution (empty = same image extension).
       this.container = 'images'; // Class name for the image container. If empty, all images are selected.
       this.folder = 'large/'; // Folder name or image prefix (prefix should not include '/').
 
@@ -39,7 +39,8 @@
     }
 
     addImagesToArray() {
-      const container = d.getElementsByClassName(this.container).length > 0 ? d.getElementsByClassName(this.container):[d.body];
+      const elements = d.getElementsByClassName(this.container);
+      const container = elements.length > 0 ? elements : [d.body];
       const containerLength = container.length;
 
       for (let i = 0; i < containerLength; i++) {
@@ -105,7 +106,7 @@
 
     // Trigger download of the current image
     downloads() {
-      /*const a = */element('a', 'rel', 'noopener', 'download', this.imgs.src.split('/').pop(), 'href', this.imgs.src, 'target', '_blank').click();
+      /*const a = */element('a', 'rel', 'noopener', 'download', getLastPathSegment(this.imgs.src), 'href', this.imgs.src, 'target', '_blank').click();
       // a.remove(); // don't always need to call .remove() for the temporary <a> element exists only in memory
     }
 
@@ -159,9 +160,9 @@
       const imageSource = index.src;
 
       // Generate full file path with folder and extension
-      const fileName = imageSource.split('/').pop();
+      const fileName = getLastPathSegment(imageSource);
       const arrayFileName = fileName.split('.');
-      const fileNameWithExtension = arrayFileName[0] + '.' + (/*index.dataset.ext || */this.extension || arrayFileName[1]);
+      const fileNameWithExtension = arrayFileName[0] + '.' + (index.dataset.ext || this.extension || arrayFileName[1]);
       const fullNamePrefixed = arrayFileName === 'svg' ? imageSource : imageSource.replace(fileName, this.folder + fileNameWithExtension);
 
       // Activate the UI if not active
@@ -181,13 +182,14 @@
       this.insi.removeChild(this.imgs);
       this.imgs = element('img', 'src', arrayFileName[1] == 'svg' ? imageSource : fullNamePrefixed, 'alt', index.alt + ' selected');
 
+      if (this.showButtons) {
+          this.alts.innerText = getLastPathSegment(this.imgs.src); //.split('/').pop();
+      }
+
       this.imgs.onload = e => {
         // Hide the spinner
         this.spin.className = 'dpn';
-
-        if (this.showButtons) {
-          this.alts.innerText = e.target.src.split('/').pop();
-        }
+        //this.alts.innerText = getLastPathSegment(e.target.src); //outside used when changing image it change imediatly
         if (this.isAutoPlayOn) {
           this.autoPlayLoop();
         }
@@ -196,6 +198,9 @@
       this.imgs.onerror = e => {
         e.target.onerror = null;
         e.target.src = imageSource;
+        if (this.showButtons) {
+          this.alts.innerText = getLastPathSegment(e.target.src); //.split('/').pop();
+        }
       };
 
       if (this.fine) this.fine.innerText = Number(this.indexOfImage) + 1;
