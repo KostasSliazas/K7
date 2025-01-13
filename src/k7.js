@@ -28,7 +28,7 @@
       this.showButtonsOnPlay = 1; // Display buttons when autoplay is active.
       this.extension = 'jpg'; // Additional extension for large resolution (empty = same image extension).
       this.container = 'images'; // Class name for the image container. If empty, all images are selected.
-      this.folder = 'large/'; // Folder name or image prefix (prefix should not include '/').
+      this.folder = 'l/'; // Folder name or image prefix (prefix should not include '/').
 
       // everything else for gallery (NO NEED TO CHANGE)
       this.imagesArray = []; // Stores all `img` elements found in the container
