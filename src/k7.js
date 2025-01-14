@@ -28,7 +28,7 @@
       this.showButtonsOnPlay = 1; // Display buttons when autoplay is active.
       this.extension = 'jpg'; // Additional extension for large resolution (empty = same image extension).
       this.container = 'images'; // Class name for the image container. If empty, all images are selected.
-      this.folder = 'l/'; // Folder name or image prefix (prefix should not include '/').
+      this.folder = 'large/'; // Folder name or image prefix (prefix should not include '/').
 
       // everything else for gallery (NO NEED TO CHANGE)
       this.imagesArray = []; // Stores all `img` elements found in the container
@@ -46,10 +46,8 @@
       for (let i = 0; i < containerLength; i++) {
         const images = container[i].getElementsByTagName('img');
         const imagesLength = images.length;
-
         for (let j = 0; j < imagesLength; j++) {
           const img = images[j];
-
           if (!(img.getAttribute('src') || '').trim()) {
             console.warn('Invalid src:', img); // Log a warning for debugging
             continue; // Skip adding this image to the array
@@ -189,7 +187,6 @@
       this.imgs.onload = e => {
         // Hide the spinner
         this.spin.className = 'dpn';
-        //this.alts.innerText = getLastPathSegment(e.target.src); //outside used when changing image it change imediatly
         if (this.isAutoPlayOn) {
           this.autoPlayLoop();
         }
