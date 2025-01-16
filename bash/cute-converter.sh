@@ -76,6 +76,75 @@ create_backup() {
     cp *.* "$BACKUP_DIR/"
     echo "Backup completed. All files copied to $BACKUP_DIR."
 }
+#!/bin/bash
+
+# Function to list and convert image types
+extension_change() {
+  # Supported image extensions
+  local extensions=("jpg" "jpeg" "png" "webp" "bmp" "tiff" "gif")
+  local selected_extension
+  local output_extension
+  local images=()
+  local converted_images=()
+
+  echo "Select the type of images to convert:"
+  for i in "${!extensions[@]}"; do
+    echo "$((i + 1))) ${extensions[i]}"
+  done
+  read -p "Enter the number for the source image type: " source_number
+  if [[ $source_number -gt 0 && $source_number -le ${#extensions[@]} ]]; then
+    selected_extension="${extensions[source_number - 1]}"
+  else
+    echo "Invalid selection. Exiting."
+    return 1
+  fi
+
+  read -p "Enter the number for the output image type: " target_number
+  if [[ $target_number -gt 0 && $target_number -le ${#extensions[@]} ]]; then
+    output_extension="${extensions[target_number - 1]}"
+  else
+    echo "Invalid selection. Exiting."
+    return 1
+  fi
+
+  if [[ "$selected_extension" == "$output_extension" ]]; then
+    echo "Source and target types are the same. No conversion needed."
+    return 1
+  fi
+
+  # Find matching images
+  images=($(find . -type f -iname "*.${selected_extension}"))
+  if [[ ${#images[@]} -eq 0 ]]; then
+    echo "No images of type '$selected_extension' found in the current directory."
+    return 1
+  fi
+
+  echo "The following images will be converted:"
+  for i in "${!images[@]}"; do
+    echo "$((i + 1))) ${images[i]}"
+  done
+
+  read -p "Proceed with the conversion to '${output_extension}'? (y/n): " confirm
+  if [[ "$confirm" != "y" ]]; then
+    echo "Conversion cancelled."
+    return 1
+  fi
+
+  # Convert images
+  for image in "${images[@]}"; do
+    output_file="${image%.*}.${output_extension}"
+    convert "$image" "$output_file" && converted_images+=("$output_file")
+  done
+
+  if [[ ${#converted_images[@]} -gt 0 ]]; then
+    echo "Conversion completed. The following images were converted:"
+    for img in "${converted_images[@]}"; do
+      echo "$img"
+    done
+  else
+    echo "No images were converted."
+  fi
+}
 
 # Function to generate an HTML image list
 generate_image_list() {
@@ -350,7 +419,8 @@ convert_images() {
  4) Generate image HTML list
  5) Remove image metadata
  6) Show EXIF data
- 7) Exit
+ 7) Convert
+ 8) Exit
 =====================================
 +++++++++++++++++++++++++++++++++++++
 "Tools used for the script:
@@ -367,7 +437,8 @@ EOF
         4) generate_image_list ;;
         5) remove_metadata ;;
         6) show_exif_data ;;
-        7) echo "Goodbye and be cute"; exit 0 ;;
+        7) extension_change ;;
+        8) echo "Goodbye and be cute"; exit 0 ;;
         *) echo "Invalid option. Please try again." ;;
         esac
         read -p "Press Enter to continue..."
