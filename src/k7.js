@@ -104,8 +104,9 @@
 
     // Trigger download of the current image
     downloads() {
-      /*const a = */element('a', 'rel', 'noopener', 'download', getLastPathSegment(this.imgs.src), 'href', this.imgs.src, 'target', '_blank').click();
-      // a.remove(); // don't always need to call .remove() for the temporary <a> element exists only in memory
+      const a = element('a', 'rel', 'noopener', 'download', getLastPathSegment(this.imgs.src), 'href', this.imgs.src, 'target', '_blank')
+      a.click();
+      a.remove(); // don't always need to call .remove() for the temporary <a> element exists only in memory
     }
 
     // Move to the previous image
