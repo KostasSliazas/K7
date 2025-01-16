@@ -1,4 +1,4 @@
-@keyframes r {
+@keyframes k7-r {
   to {
     transform: rotate(360deg);
   }
@@ -50,8 +50,7 @@
 }
 #k7 #blt,
 #k7 #btr {
-  width: 20%;
-  min-width: 96px;
+  width: 160px;
   border: 0;
   height: 100%;
   border-radius: 0;
@@ -89,7 +88,7 @@
   width: 24px;
 }
 #k7 #spn {
-  animation: r 0.3s linear infinite;
+  animation: k7-r 0.3s linear infinite;
   border-color: transparent #aaa;
   left: 50%;
   margin: -12px 0 0-12px;
@@ -110,7 +109,7 @@
   border-radius: 4px;
 }
 #k7 #pli::after {
-  border-color: transparent #fff;
+  border-color: transparent #eee;
   border-width: 5px 0 5px 12px;
   left: 19px;
   top: 19px;
@@ -128,7 +127,7 @@
   width: 12px;
 }
 #k7 #dlf::before {
-  background: #fff;
+  background: #eee;
   height: 18px;
   left: 23px;
   top: 9px;
@@ -171,7 +170,7 @@
 #k7 .u,
 #k7 .a::after,
 #k7 .s::before {
-  border: 2px solid #fff;
+  border: 2px solid #eee;
 }
 #k7 .b {
   background: 0 0;
@@ -180,9 +179,10 @@
   border-radius: 50%;
   border: 0;
   cursor: pointer;
-  transition: opacity 0.1s 0.2s;
+  transition: opacity 0.3s 0.1s;
   margin: 0;
   padding: 0;
+  color: inherit;
 }
 #k7 .b::after,
 #k7 .b::before {
