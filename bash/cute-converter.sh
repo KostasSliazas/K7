@@ -18,7 +18,7 @@ is_supported_image() {
 # Function to check and install required tools
 check_and_install_tools() {
     # List of required tools
-    local tools=("exiftool" "exiv2" "mogrify")
+    local tools=("exiftool" "mogrify")
     local missing_tools=()
 
     # Check for missing tools
@@ -194,7 +194,7 @@ show_exif_data() {
         if is_supported_image "$img"; then
             echo "EXIF data for $img:"
             exiftool "$img"
-            echo "-----------------------------"
+            echo "====================================="
         fi
     done
 }
@@ -352,6 +352,12 @@ convert_images() {
  6) Show EXIF data
  7) Exit
 =====================================
++++++++++++++++++++++++++++++++++++++
+"Tools used for the script:
+'exiftool','mogrify'
++++++++++++++++++++++++++++++++++++++
+=====================================
+
 EOF
         read -p "Choose an option (1-7): " choice
         case $choice in
