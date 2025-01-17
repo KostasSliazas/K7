@@ -24,132 +24,132 @@
   user-select: none;
   z-index: 999999;
 }
-#k7 #ins img {
+#k7 #in img {
   background: var(--color1, #334);
   max-height: 100%;
   max-width: 100%;
 }
-#k7 #pla,
-#k7 #fln {
+#k7 #pl,
+#k7 #fl {
   text-indent: 50px;
   white-space: nowrap;
   bottom: 24px;
   height: 48px;
 }
-#k7 #alt {
+#k7 #al {
   right: 50px;
 }
-#k7 #alt,
-#k7 #ins,
-#k7 #ins img,
-#k7 #sta {
+#k7 #al,
+#k7 #in,
+#k7 #in img,
+#k7 #st {
   position: relative;
 }
-#k7 #sta {
+#k7 #st {
   text-indent: 0;
 }
-#k7 #blt,
-#k7 #btr {
+#k7 #bl,
+#k7 #bt {
   width: 160px;
   border: 0;
   height: 100%;
   border-radius: 0;
 }
-#k7 #lft::after,
-#k7 #rgt::after {
+#k7 #lf::after,
+#k7 #rg::after {
   padding: 9px;
   top: 14px;
 }
-#k7 #lft::after {
+#k7 #lf::after {
   border-width: 2px 0 0 2px;
   left: 14px;
 }
-#k7 #rgt::after {
+#k7 #rg::after {
   right: 14px;
   border-width: 2px 2px 0 0;
 }
-#k7 #blt:hover #lft::after {
+#k7 #bl:hover #lf::after {
   left: 9px;
 }
-#k7 #btr:hover #rgt::after {
+#k7 #bt:hover #rg::after {
   right: 9px;
 }
-#k7 #cls::after,
-#k7 #cls::before {
+#k7 #cl::after,
+#k7 #cl::before {
   border-width: 0 0 0 2px;
   height: 30px;
   left: 23px;
   top: 10px;
 }
-#k7 #pli::before,
-#k7 #spn {
+#k7 #pu::before,
+#k7 #sp {
   border-radius: 50%;
   height: 24px;
   width: 24px;
 }
-#k7 #spn {
+#k7 #sp {
   animation: k7-r 0.3s linear infinite;
   border-color: transparent #aaa;
   left: 50%;
   margin: -12px 0 0-12px;
   top: 50%;
 }
-#k7 #dwl {
+#k7 #dw {
   border-radius: 0 0 2px 2px;
   top: 27px;
   height: 6px;
   width: 24px;
   border-top: 0;
 }
-#k7 #pli::before {
+#k7 #pu::before {
   transition: 0.2s border-radius;
   top: 12px;
 }
-#k7 #pli.q::before {
+#k7 #pu.q::before {
   border-radius: 4px;
 }
-#k7 #pli::after {
+#k7 #pu::after {
   border-color: transparent #eee;
   border-width: 5px 0 5px 12px;
   left: 19px;
   top: 19px;
   width: 10px;
 }
-#k7 #pli.q::after {
+#k7 #pu.q::after {
   border-width: 0 2px;
   padding-top: 10px;
 }
-#k7 #dlf::after {
+#k7 #dl::after {
   border-width: 0 0 2px 2px;
   bottom: 21px;
   height: 12px;
   left: 18px;
   width: 12px;
 }
-#k7 #dlf::before {
+#k7 #dl::before {
   background: #eee;
   height: 18px;
   left: 23px;
   top: 9px;
   width: 2px;
 }
-#k7 #cls {
+#k7 #cl {
   top: 24px;
 }
-#k7 #dwl,
-#k7 #pli::before {
+#k7 #dw,
+#k7 #pu::before {
   left: 12px;
 }
-#k7 #cls,
-#k7 #rgt,
-#k7 #fln {
+#k7 #cl,
+#k7 #rg,
+#k7 #fl {
   right: 24px;
 }
-#k7 #pla,
-#k7 #lft {
+#k7 #pl,
+#k7 #lf {
   left: 24px;
 }
-#k7 #ins img,
+#k7 #in img,
 #k7 .t {
   top: 50%;
   z-index: -1;
@@ -195,8 +195,8 @@
   opacity: 1;
   outline: 0;
 }
-#k7 #blt:focus,
-#k7 #btr:focus {
+#k7 #bl:focus,
+#k7 #bt:focus {
   background: 0 0;
 }
 #k7 .b:active {
@@ -233,7 +233,7 @@ html.f {
 }
 @media (min-width: 1024px) {
   #k7:not(:hover) #cnt ~ div,
-  #k7:not(:hover) #ins ~ .b {
+  #k7:not(:hover) #in ~ .b {
     opacity: 0;
   }
 }
