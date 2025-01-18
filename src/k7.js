@@ -92,7 +92,7 @@
 
         // Set a timeout to move to the next image after a specified delay
         this.timeOut = setTimeout(() => {
-          this.right().show()
+          this.right().showGallery()
 
           // Clear auto-play if the last image is reached
           if (this.indexOfImage === this.imagesArray.length - 1) {
@@ -147,14 +147,14 @@
     }
 
     // Close the image viewer
-    close () {
+    closeModal () {
       this.isActive = false
       this.imag.className = 'g h w y l'
       de.className = de.className.split('f').join('').trim()
     }
 
     // Show the current image
-    show () {
+    showGallery () {
       const index = this.imagesArray[/** @type {number} */ (this.indexOfImage)]
       const imageSource = index.src
       // Generate full file path with folder and extension
@@ -215,7 +215,7 @@
       const target = e.target
       if (target.tagName === 'IMG') {
         this.indexOfImage = this.imagesArray.indexOf(target) > -1 ? this.imagesArray.indexOf(target) : 0
-        this.show()
+        this.showGallery()
         e.stopImmediatePropagation()
       }
     }
@@ -224,11 +224,11 @@
       // prettier-ignore
       /** @suppress {missingProperties} */
       const k = {
-        'bl': () => this.lefts().show(), // Move left action (chained methods)
-        'bt': () => this.right().show(), // Move right action (chained methods)
+        'bl': () => this.lefts().showGallery(), // Move left action (chained methods)
+        'bt': () => this.right().showGallery(), // Move right action (chained methods)
         'pu': () => this.autoPlayLoop(), // Play/pause action
         'dl': () => this.downloads(), // Download action
-        'cl': () => this.close() // Close action
+        'cl': () => this.closeModal() // Close action
       }
 
       // Map additional keys to specific actions
@@ -248,7 +248,7 @@
           const ev = e.key || e.target.id
           // Handle Escape and cl separately
           if (ev === 'Escape' || ev === 'cl') {
-            this.close()
+            this.closeModal()
           }
           // Check for valid key and other conditions
           if (!k[ev] || this.isAutoPlayOn || e.isComposing) {
