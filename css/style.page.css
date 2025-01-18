@@ -617,6 +617,7 @@ footer p {
     position: fixed;
     top: 0;
     bottom: initial;
+    height: 100%;
   }
 
   .nav ul {
