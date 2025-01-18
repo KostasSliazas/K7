@@ -1,5 +1,6 @@
 /* jshint esversion: 6 */
 ;((w, d) => {
+  'use strict'
   const de = d.documentElement // Reference to the root <html> element
   const getLastPathSegment = (path) => path.split('/').pop()
   const append = (parentElement, ...childElements) => {
