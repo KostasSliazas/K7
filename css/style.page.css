@@ -77,7 +77,7 @@ header {
     z-index: 99;
     transition: height .2s linear;
     overflow-y: hidden;
-    min-height: 72px;
+    white-space: nowrap;
     background: repeating-linear-gradient(-45deg,var(--darke)0,var(--darke) 2px,var(--darkl) 3px,var(--darkl) 4px)
 }
 
