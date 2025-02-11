@@ -263,7 +263,22 @@
       // Attach event listeners for click and keyboard events with correct context (bind this)
       this.imag.addEventListener('click', switcher.bind(this))
       w.addEventListener('keyup', switcher.bind(this))
+
+      // EVENTS FOR TOUCH
+      let touchStartX = 0;
+      this.imag.addEventListener("touchstart", (e) => {
+        touchStartX = e.touches[0].clientX;
+      });
+
+      this.imag.addEventListener("touchend", (e) => {
+        const diffX = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(diffX) > 50) {
+          diffX > 0 ?  this.lefts().showGallery() : this.right().showGallery();
+        }
+      });
     }
+
+
 
     init () {
       // Add inline CSS using base64 string dynamically (increases file size)
