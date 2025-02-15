@@ -38,6 +38,7 @@ This gallery is compiled using Google Closure Compiler:
 ```bash
 google-closure-compiler -O ADVANCED k7.js --js_output_file k7.min.js
 ```
+Without recompiling, just need to change (a.dataset.ext || "jpg") to set a default extension, for example, (a.dataset.ext || "webp"), and "large/" for greater resolutions, for example, "larger-" as a prefix or "hd1080/" as a folder.
 
 ## About
 
