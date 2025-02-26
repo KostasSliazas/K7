@@ -176,7 +176,7 @@
   background: 0 0;
   height: 48px;
   width: 48px;
-  border-radius: 50%;
+  border-radius: 7px;
   border: 0;
   cursor: pointer;
   transition: opacity 0.3s 0.1s;
