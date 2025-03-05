@@ -1,18 +1,22 @@
 /* jshint esversion: 6 */
 ;((w, d) => {
   'use strict'
+  /** @const @type {!Element} */
+  const de = d.documentElement // Reference to the root <html>
 
-  const de = d.documentElement // Reference to the root <html> element
-  const getLastPathSegment = path => path.split('/').pop();
+  /** @noinline */
+  function getLastPathSegment (path){
+    return path.split('/').slice(-1)[0]
+  };
 
-  const append = (parentElement, ...childElements) => {
+  function append(parentElement, ...childElements) {
     // Iterate over all child elements passed to the function
     for (let index = 0; index < childElements.length; index += 1) {
       parentElement.appendChild(childElements[index]) // Append each child to the parent
     }
   }
 
-  const element = (tagName, ...attributes) => {
+  function element(tagName, ...attributes) {
     // Create a new element with the specified tag name
     const newElement = d.createElement(tagName)
     // Loop through the provided attributes and add them to the element
@@ -26,7 +30,7 @@
   class UI {
     constructor () {
       // user config
-      this.delay = 1240 // Autoplay timeout
+      this.delayShow = 1330 // Autoplay timeout
       this.showButtons = 1 // Display buttons by default. (true = 1 and false = 0)
       this.showButtonsOnPlay = 1 // Display buttons when autoplay is active.
       this.extension = 'jpg' // Additional extension for large resolution (empty = same image extension).
@@ -42,6 +46,7 @@
     }
 
     addImagesToArray () {
+      // class name for the image container. If empty, all images are selected.
       const elements = d.getElementsByClassName(this.container)
       const container = elements.length > 0 ? elements : [d.body]
       const containerLength = container.length
@@ -100,13 +105,13 @@
           if (this.indexOfImage === this.imagesArray.length - 1) {
             this.clear()
           }
-        }, this.delay)
+        }, this.delayShow)
       }
     }
 
-    // Trigger download of the current image
+    // Trigger download of the current image with default file name or (with src commented out)
     downloads () {
-      const a = element('a', 'rel', 'noopener', 'download', getLastPathSegment(this.imgs.src), 'href', this.imgs.src, 'target', '_blank')
+      const a = element('a', 'rel', 'noopener', 'download', '' /*getLastPathSegment(this.imgs.src)*/, 'href', this.imgs.src, 'target', '_blank')
       a.click()
       //a.remove() // don't always need to call .remove() for the temporary <a> element exists only in memory
     }
@@ -159,14 +164,37 @@
 
     // Show the current image
     showGallery () {
+      // Retrieve the image object from imagesArray using the current indexOfImage
       const index = this.imagesArray[/** @type {number} */ (this.indexOfImage)]
+
       // if (!index) return; // Prevent errors if index is undefined
+
+      // Get the source URL of the selected image
       const imageSource = index.src
-      // Generate full file path with folder and extension
+
+      // Extract the file name from the image source URL using getLastPathSegment function
       const fileName = getLastPathSegment(imageSource)
+
+      // Split the file name into an array using '.' as the delimiter to separate name and extension
       const arrayFileName = fileName.split('.')
+
+      // Construct the file name with the correct extension:
+      // - arrayFileName[0] is the base name of the file (everything before the first dot)
+      // - index.dataset.ext (if available) is used as the extension
+      // - Otherwise, this.extension is used if defined
+      // - If neither is available, fallback to the original extension (arrayFileName[1])
       const fileExtension = arrayFileName[0] + '.' + (index.dataset.ext || this.extension || arrayFileName[1])
-      const fullNamePrefixed = Array.isArray(arrayFileName) && arrayFileName.length > 1 && arrayFileName[1] === 'svg' ? imageSource : imageSource.replace(fileName, this.folder + fileExtension)
+
+      // Check if the file extension starts with 'svg' (supports both 'svg' and 'svgz'):
+      // - arrayFileName.slice(-1)[0] gets the last element (the file extension)
+      // - .slice(0, 3) ensures we only check the first three characters
+      // - .toLowerCase() makes the comparison case-insensitive
+      const isSvg = arrayFileName.slice(-1)[0].slice(0, 3).toLowerCase() === 'svg'
+
+      // Determine the full image path, considering whether it's an SVG:
+      // - If the file is an SVG, keep the original imageSource (no changes).
+      // - Otherwise, replace the file name in imageSource with the folder path + modified file name.
+      const fullNamePrefixed = isSvg ? imageSource : imageSource.replace(fileName, this.folder + fileExtension)
 
       // Activate the UI if not active
       if (!this.isActive) {
@@ -176,18 +204,16 @@
       }
 
       // Prevent reloading if the current image matches the source
-      if (!this.imgs || this.imgs.src === fullNamePrefixed || this.imgs.src === imageSource) return;
+      if (!this.imgs || this.imgs.src === fullNamePrefixed) return;
 
       // Update UI state and trigger image loading
       this.spin.className = 'u'
 
       // Remove old image and append the new one
       this.insi.removeChild(this.imgs)
-      this.imgs = element('img', 'src', arrayFileName[1] === 'svg' ? imageSource : fullNamePrefixed, 'alt', index.alt + ' selected')
+      this.imgs = element('img', 'src', fullNamePrefixed, 'alt', index.alt + ' selected')
 
-      if (this.showButtons) {
-        this.alts.innerText = getLastPathSegment(this.imgs.src)
-      }
+      this.setDownloadText(fullNamePrefixed)
 
       this.imgs.onload = () => {
         // Hide the spinner
@@ -200,12 +226,10 @@
       this.imgs.onerror = e => {
         e.target.onerror = null
         e.target.src = imageSource
-        if (this.showButtons) {
-          this.alts.innerText = getLastPathSegment(e.target.src)
-        }
+        this.setDownloadText(fileName)
       }
 
-      if (this.fine) this.fine.innerText = Number(this.indexOfImage) + 1
+      if (this.fine) this.fine.textContent = this.indexOfImage + 1
       append(this.insi, this.imgs)
 
       // don't change left right visibility'
@@ -222,6 +246,13 @@
         this.indexOfImage = imgIndex > -1 ? imgIndex : 0;
         this.showGallery()
         e.stopImmediatePropagation()
+      }
+    }
+
+    // change image text (file name)
+    setDownloadText(target){
+      if (this.showButtons) {
+        this.alts.textContent = getLastPathSegment(target)
       }
     }
 
@@ -292,7 +323,7 @@
         'rel',
         'stylesheet',
         'href',
-        'data:text/css;base64,QGtleWZyYW1lcyBrNy1ye3Rve3RyYW5zZm9ybTpyb3RhdGUoMzYwZGVnKX19I2s3ICosI2s3IDo6YWZ0ZXIsI2s3IDo6YmVmb3Jle2JveC1zaXppbmc6Ym9yZGVyLWJveDtkaXNwbGF5OmlubGluZS1ibG9jaztmb250OjEycHgvNCBzYW5zLXNlcmlmO3Bvc2l0aW9uOmFic29sdXRlfSNrNyAuYiAqe3otaW5kZXg6LTE7cG9pbnRlci1ldmVudHM6bm9uZX0jazd7YmFja2dyb3VuZDp2YXIoLS1jb2xvcjIsICMyMjMpO2NvbG9yOiNhYWE7cG9zaXRpb246Zml4ZWQ7dGV4dC1hbGlnbjpjZW50ZXI7dHJhbnNpdGlvbjp0cmFuc2Zvcm0gLjJzO3VzZXItc2VsZWN0Om5vbmU7ei1pbmRleDo5OTk5OTl9I2s3ICNpbiBpbWd7YmFja2dyb3VuZDp2YXIoLS1jb2xvcjEsICMzMzQpO21heC1oZWlnaHQ6MTAwJTttYXgtd2lkdGg6MTAwJX0jazcgI2ZsLCNrNyAjcGx7dGV4dC1pbmRlbnQ6NTBweDt3aGl0ZS1zcGFjZTpub3dyYXA7Ym90dG9tOjI0cHg7aGVpZ2h0OjQ4cHh9I2s3ICNhbHtyaWdodDo1MHB4fSNrNyAjYWwsI2s3ICNpbiwjazcgI2luIGltZywjazcgI3N0e3Bvc2l0aW9uOnJlbGF0aXZlfSNrNyAjc3R7dGV4dC1pbmRlbnQ6MH0jazcgI2JsLCNrNyAjYnR7d2lkdGg6MTYwcHg7Ym9yZGVyOjA7aGVpZ2h0OjEwMCU7Ym9yZGVyLXJhZGl1czowfSNrNyAjbGY6OmFmdGVyLCNrNyAjcmc6OmFmdGVye3BhZGRpbmc6OXB4O3RvcDoxNHB4fSNrNyAjbGY6OmFmdGVye2JvcmRlci13aWR0aDoycHggMCAwIDJweDtsZWZ0OjE0cHh9I2s3ICNyZzo6YWZ0ZXJ7cmlnaHQ6MTRweDtib3JkZXItd2lkdGg6MnB4IDJweCAwIDB9I2s3ICNibDpob3ZlciAjbGY6OmFmdGVye2xlZnQ6OXB4fSNrNyAjYnQ6aG92ZXIgI3JnOjphZnRlcntyaWdodDo5cHh9I2s3ICNjbDo6YWZ0ZXIsI2s3ICNjbDo6YmVmb3Jle2JvcmRlci13aWR0aDowIDAgMCAycHg7aGVpZ2h0OjMwcHg7bGVmdDoyM3B4O3RvcDoxMHB4fSNrNyAjcHU6OmJlZm9yZSwjazcgI3Nwe2JvcmRlci1yYWRpdXM6NTAlO2hlaWdodDoyNHB4O3dpZHRoOjI0cHh9I2s3ICNzcHthbmltYXRpb246azctciAuM3MgbGluZWFyIGluZmluaXRlO2JvcmRlci1jb2xvcjp0cmFuc3BhcmVudCAjYWFhO2xlZnQ6NTAlO21hcmdpbjotMTJweCAwIDAtMTJweDt0b3A6NTAlfSNrNyAjZHd7Ym9yZGVyLXJhZGl1czowIDAgMnB4IDJweDt0b3A6MjdweDtoZWlnaHQ6NnB4O3dpZHRoOjI0cHg7Ym9yZGVyLXRvcDowfSNrNyAjcHU6OmJlZm9yZXt0cmFuc2l0aW9uOi4ycyBib3JkZXItcmFkaXVzO3RvcDoxMnB4fSNrNyAjcHUucTo6YmVmb3Jle2JvcmRlci1yYWRpdXM6NHB4fSNrNyAjcHU6OmFmdGVye2JvcmRlci1jb2xvcjp0cmFuc3BhcmVudCAjZWVlO2JvcmRlci13aWR0aDo1cHggMCA1cHggMTJweDtsZWZ0OjE5cHg7dG9wOjE5cHg7d2lkdGg6MTBweH0jazcgI3B1LnE6OmFmdGVye2JvcmRlci13aWR0aDowIDJweDtwYWRkaW5nLXRvcDoxMHB4fSNrNyAjZGw6OmFmdGVye2JvcmRlci13aWR0aDowIDAgMnB4IDJweDtib3R0b206MjFweDtoZWlnaHQ6MTJweDtsZWZ0OjE4cHg7d2lkdGg6MTJweH0jazcgI2RsOjpiZWZvcmV7YmFja2dyb3VuZDojZWVlO2hlaWdodDoxOHB4O2xlZnQ6MjNweDt0b3A6OXB4O3dpZHRoOjJweH0jazcgI2Nse3RvcDoyNHB4fSNrNyAjZHcsI2s3ICNwdTo6YmVmb3Jle2xlZnQ6MTJweH0jazcgI2NsLCNrNyAjZmwsI2s3ICNyZ3tyaWdodDoyNHB4fSNrNyAjbGYsI2s3ICNwbHtsZWZ0OjI0cHh9I2s3ICNpbiBpbWcsI2s3IC50e3RvcDo1MCU7ei1pbmRleDotMTt0cmFuc2Zvcm06dHJhbnNsYXRlWSgtNTAlKX0jazcgLnA6OmFmdGVyLCNrNyAucDo6YmVmb3Jle3RyYW5zZm9ybTpyb3RhdGUoNDVkZWcpfSNrNyAuajo6YWZ0ZXJ7dHJhbnNmb3JtOnJvdGF0ZSgtNDVkZWcpfSNrNyAudywjazcud3toZWlnaHQ6MTAwJTt3aWR0aDoxMDAlfSNrNyAuYTo6YWZ0ZXIsI2s3IC5zOjpiZWZvcmUsI2s3IC51e2JvcmRlcjoycHggc29saWQgI2VlZX0jazcgLmJ7YmFja2dyb3VuZDowIDA7aGVpZ2h0OjQ4cHg7d2lkdGg6NDhweDtib3JkZXItcmFkaXVzOjdweDtib3JkZXI6MDtjdXJzb3I6cG9pbnRlcjt0cmFuc2l0aW9uOm9wYWNpdHkgLjNzIC4xczttYXJnaW46MDtwYWRkaW5nOjA7Y29sb3I6aW5oZXJpdH0jazcgLmI6OmFmdGVyLCNrNyAuYjo6YmVmb3Jle2NvbnRlbnQ6IiJ9I2s3IC5iOmZvY3VzLCNrNyAuYjpob3ZlciwjazcgLmI6aG92ZXIgc3BhbntiYWNrZ3JvdW5kOnJnYmEoNyw3LDcsLjIpO29wYWNpdHk6MTtvdXRsaW5lOjB9I2s3ICNibDpmb2N1cywjazcgI2J0OmZvY3Vze2JhY2tncm91bmQ6MCAwfSNrNyAuYjphY3RpdmV7b3BhY2l0eTouM30jazcgLm57ZGlzcGxheTpub25lfSNrNyAuaCwjazcuaHtvcGFjaXR5OjB9I2s3IC5ve29wYWNpdHk6Ljd9I2s3IC5ye3JpZ2h0OjB9I2s3IC55LCNrNy55e3RvcDowfSNrNyAubCwjazcubHtsZWZ0OjB9I2s3IC5mLCNrNy5mLGh0bWwuZntvdmVyZmxvdzpoaWRkZW4haW1wb3J0YW50fSNrNy5ne3RyYW5zZm9ybTpzY2FsZSgwKX1AbWVkaWEgKG1pbi13aWR0aDoxMDI0cHgpeyNrNzpub3QoOmhvdmVyKSAjY250fmRpdiwjazc6bm90KDpob3ZlcikgI2lufi5ie29wYWNpdHk6MH19'
+        'data:text/css;base64,QGtleWZyYW1lcyBrNy1ye3Rve3RyYW5zZm9ybTpyb3RhdGUoMzYwZGVnKX19I2s3ICosI2s3IDo6YWZ0ZXIsI2s3IDo6YmVmb3Jle2JveC1zaXppbmc6Ym9yZGVyLWJveDtkaXNwbGF5OmlubGluZS1ibG9jaztmb250OjEycHgvNCBzYW5zLXNlcmlmO3Bvc2l0aW9uOmFic29sdXRlfSNrNyAuYiAqe3otaW5kZXg6LTE7cG9pbnRlci1ldmVudHM6bm9uZX0jazd7YmFja2dyb3VuZDp2YXIoLS1jb2xvcjIsICMyMjMpO2NvbG9yOiNhYWE7cG9zaXRpb246Zml4ZWQ7dGV4dC1hbGlnbjpjZW50ZXI7dHJhbnNpdGlvbjp0cmFuc2Zvcm0gLjJzO3VzZXItc2VsZWN0Om5vbmU7ei1pbmRleDo5OTk5OTl9I2s3ICNpbiBpbWd7YmFja2dyb3VuZDp2YXIoLS1jb2xvcjEsICMzMzQpO21heC1oZWlnaHQ6MTAwJTttYXgtd2lkdGg6MTAwJX0jazcgI2ZsLCNrNyAjcGx7dGV4dC1pbmRlbnQ6NTBweDt3aGl0ZS1zcGFjZTpub3dyYXA7Ym90dG9tOjI0cHg7aGVpZ2h0OjQ4cHh9I2s3ICNhbHtyaWdodDo1MHB4fSNrNyAjYWwsI2s3ICNpbiwjazcgI2luIGltZywjazcgI3N0e3Bvc2l0aW9uOnJlbGF0aXZlfSNrNyAjc3R7dGV4dC1pbmRlbnQ6MH0jazcgI2JsLCNrNyAjYnR7d2lkdGg6MTYwcHg7Ym9yZGVyOjA7aGVpZ2h0OjEwMCU7Ym9yZGVyLXJhZGl1czowfSNrNyAjbGY6OmFmdGVyLCNrNyAjcmc6OmFmdGVye3BhZGRpbmc6OXB4O3RvcDoxNHB4fSNrNyAjbGY6OmFmdGVye2JvcmRlci13aWR0aDoycHggMCAwIDJweDtsZWZ0OjE0cHh9I2s3ICNyZzo6YWZ0ZXJ7cmlnaHQ6MTRweDtib3JkZXItd2lkdGg6MnB4IDJweCAwIDB9I2s3ICNibDpob3ZlciAjbGY6OmFmdGVye2xlZnQ6OXB4fSNrNyAjYnQ6aG92ZXIgI3JnOjphZnRlcntyaWdodDo5cHh9I2s3ICNjbDo6YWZ0ZXIsI2s3ICNjbDo6YmVmb3Jle2JvcmRlci13aWR0aDowIDAgMCAycHg7aGVpZ2h0OjMwcHg7bGVmdDoyM3B4O3RvcDoxMHB4fSNrNyAjcHU6OmJlZm9yZSwjazcgI3Nwe2JvcmRlci1yYWRpdXM6NTAlO2hlaWdodDoyNHB4O3dpZHRoOjI0cHh9I2s3ICNzcHthbmltYXRpb246azctciAuM3MgbGluZWFyIGluZmluaXRlO2JvcmRlci1jb2xvcjp0cmFuc3BhcmVudCAjYWFhO2xlZnQ6NTAlO21hcmdpbjotMTJweCAwIDAtMTJweDt0b3A6NTAlfSNrNyAjZHd7Ym9yZGVyLXJhZGl1czowIDAgNHB4IDRweDt0b3A6MjdweDtoZWlnaHQ6NnB4O3dpZHRoOjI0cHg7Ym9yZGVyLXRvcDowfSNrNyAjcHU6OmJlZm9yZXt0cmFuc2l0aW9uOi4ycyBib3JkZXItcmFkaXVzO3RvcDoxMnB4fSNrNyAjcHUucTo6YmVmb3Jle2JvcmRlci1yYWRpdXM6NHB4fSNrNyAjcHU6OmFmdGVye2JvcmRlci1jb2xvcjp0cmFuc3BhcmVudCAjZWVlO2JvcmRlci13aWR0aDo1cHggMCA1cHggMTJweDtsZWZ0OjIwcHg7dG9wOjIwcHg7d2lkdGg6OHB4fSNrNyAjcHUucTo6YWZ0ZXJ7Ym9yZGVyLXdpZHRoOjAgMnB4O3BhZGRpbmctdG9wOjhweH0jazcgI2RsOjphZnRlcntib3JkZXItd2lkdGg6MCAwIDJweCAycHg7Ym90dG9tOjIxcHg7aGVpZ2h0OjEycHg7bGVmdDoxOHB4O3dpZHRoOjEycHh9I2s3ICNkbDo6YmVmb3Jle2JhY2tncm91bmQ6I2VlZTtoZWlnaHQ6MThweDtsZWZ0OjIzcHg7dG9wOjlweDt3aWR0aDoycHh9I2s3ICNjbHt0b3A6MjRweH0jazcgI2R3LCNrNyAjcHU6OmJlZm9yZXtsZWZ0OjEycHh9I2s3ICNjbCwjazcgI2ZsLCNrNyAjcmd7cmlnaHQ6MjRweH0jazcgI2xmLCNrNyAjcGx7bGVmdDoyNHB4fSNrNyAjaW4gaW1nLCNrNyAudHt0b3A6NTAlO3otaW5kZXg6LTE7dHJhbnNmb3JtOnRyYW5zbGF0ZVkoLTUwJSl9I2s3IC5wOjphZnRlciwjazcgLnA6OmJlZm9yZXt0cmFuc2Zvcm06cm90YXRlKDQ1ZGVnKX0jazcgLmo6OmFmdGVye3RyYW5zZm9ybTpyb3RhdGUoLTQ1ZGVnKX0jazcgLncsI2s3Lnd7aGVpZ2h0OjEwMCU7d2lkdGg6MTAwJX0jazcgLmE6OmFmdGVyLCNrNyAuczo6YmVmb3JlLCNrNyAudXtib3JkZXI6MnB4IHNvbGlkICNlZWV9I2s3IC5ie2JhY2tncm91bmQ6MCAwO2hlaWdodDo0OHB4O3dpZHRoOjQ4cHg7Ym9yZGVyLXJhZGl1czo3cHg7Ym9yZGVyOjA7Y3Vyc29yOnBvaW50ZXI7dHJhbnNpdGlvbjpvcGFjaXR5IC4zcyAuMXM7bWFyZ2luOjA7cGFkZGluZzowO2NvbG9yOmluaGVyaXR9I2s3IC5iOjphZnRlciwjazcgLmI6OmJlZm9yZXtjb250ZW50OiIifSNrNyAuYjpmb2N1cywjazcgLmI6aG92ZXIsI2s3IC5iOmhvdmVyIHNwYW57YmFja2dyb3VuZDpyZ2JhKDcsNyw3LC4yKTtvcGFjaXR5OjE7b3V0bGluZTowfSNrNyAjYmw6Zm9jdXMsI2s3ICNidDpmb2N1c3tiYWNrZ3JvdW5kOjAgMH0jazcgLmI6YWN0aXZle29wYWNpdHk6LjN9I2s3IC5ue2Rpc3BsYXk6bm9uZX0jazcgLmgsI2s3Lmh7b3BhY2l0eTowfSNrNyAub3tvcGFjaXR5Oi43fSNrNyAucntyaWdodDowfSNrNyAueSwjazcueXt0b3A6MH0jazcgLmwsI2s3Lmx7bGVmdDowfSNrNyAuZiwjazcuZixodG1sLmZ7b3ZlcmZsb3c6aGlkZGVuIWltcG9ydGFudH0jazcuZ3t0cmFuc2Zvcm06c2NhbGUoMCl9I2s3IGltZ3t0cmFuc2l0aW9uOi4ycyBvcGFjaXR5fSNzcC51K2Rpdj5kaXYgaW1ne29wYWNpdHk6LjF9QG1lZGlhIG9ubHkgc2NyZWVuIGFuZCAobWF4LXdpZHRoOjMyMHB4KXsjazcgI2ZsPnNwYW57ZGlzcGxheTpub25lfX1AbWVkaWEgKG1pbi13aWR0aDoxMDI0cHgpeyNrNzpub3QoOmhvdmVyKSAjY250fmRpdiwjazc6bm90KDpob3ZlcikgI2lufi5ie29wYWNpdHk6MH19'
       )
       append(d.getElementsByTagName('head')[0], resource)
 
@@ -322,8 +353,8 @@
       append(this.insi, this.imgs)
       append(this.rigt, this.irig)
       append(this.left, this.ilef)
+      append(this.imag, this.spin, this.cent)
       append(this.cent, this.insi, this.rigt, this.left, this.clos)
-      append(this.imag, this.cent, this.spin)
       append(d.body, this.imag)
 
       if (this.showButtons) {
@@ -347,7 +378,6 @@
         append(this.foot, this.play, d.createTextNode('Image '), this.fine, d.createTextNode(' of ' + this.imagesArray.length))
         append(this.wdow, this.down)
       }
-      return this
     }
   }
 
@@ -359,6 +389,7 @@
   if (lengthOfImages) {
     // Initialize the UI, setting up initial configurations and state and
     // Add event listeners to enable user interactions like clicks on images
-    ui.init().listeners()
+    ui.init()
+    ui.listeners()
   }
 })(window, document)

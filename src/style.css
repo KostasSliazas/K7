@@ -94,8 +94,9 @@
   margin: -12px 0 0-12px;
   top: 50%;
 }
+
 #k7 #dw {
-  border-radius: 0 0 2px 2px;
+  border-radius: 0 0 4px 4px;
   top: 27px;
   height: 6px;
   width: 24px;
@@ -110,14 +111,14 @@
 }
 #k7 #pu::after {
   border-color: transparent #eee;
-  border-width: 5px 0 5px 12px;
-  left: 19px;
-  top: 19px;
-  width: 10px;
+  border-width: 4px 0 4px 8px;
+  left: 20px;
+  top: 20px;
+  width: 8px;
 }
 #k7 #pu.q::after {
   border-width: 0 2px;
-  padding-top: 10px;
+  padding-top: 8px;
 }
 #k7 #dl::after {
   border-width: 0 0 2px 2px;
@@ -231,6 +232,18 @@ html.f {
 #k7.g {
   transform: scale(0);
 }
+
+#k7 img{transition: .2s opacity}
+
+#sp.u + div>div img {
+  opacity: .1;
+}
+@media only screen and (max-width: 320px){
+  #k7 #fl > span {
+    display: none;
+  }
+}
+
 @media (min-width: 1024px) {
   #k7:not(:hover) #cnt ~ div,
   #k7:not(:hover) #in ~ .b {
