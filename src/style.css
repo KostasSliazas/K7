@@ -24,10 +24,11 @@
   user-select: none;
   z-index: 999999;
 }
-#k7 #in img {
+#k7 img {
   background: var(--color1, #334);
   max-height: 100%;
   max-width: 100%;
+  transition: .2s opacity;
 }
 #k7 #pl,
 #k7 #fl {
@@ -150,7 +151,7 @@
 #k7 #lf {
   left: 24px;
 }
-#k7 #in img,
+#k7 img,
 #k7 .t {
   top: 50%;
   z-index: -1;
@@ -232,8 +233,6 @@ html.f {
 #k7.g {
   transform: scale(0);
 }
-
-#k7 img{transition: .2s opacity}
 
 #sp.u + div>div img {
   opacity: .1;
