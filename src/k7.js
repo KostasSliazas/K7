@@ -1,5 +1,5 @@
 /* jshint esversion: 6 */
-;((w, d) => {
+;(function(w, d){
   'use strict'
   /** @const @type {!Element} */
   const de = d.documentElement // Reference to the root <html>
