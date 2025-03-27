@@ -11,6 +11,9 @@
   font: 12px/4 sans-serif;
   position: absolute;
 }
+#k7 .c {
+  position: relative;
+}
 #k7 .b * {
   z-index: -1;
   pointer-events: none;
@@ -29,25 +32,6 @@
   max-height: 100%;
   max-width: 100%;
   transition: .2s opacity;
-}
-#k7 #pl,
-#k7 #fl {
-  text-indent: 50px;
-  white-space: nowrap;
-  bottom: 24px;
-  height: 48px;
-}
-#k7 #al {
-  right: 50px;
-}
-#k7 #al,
-#k7 #in,
-#k7 #in img,
-#k7 #st {
-  position: relative;
-}
-#k7 #st {
-  text-indent: 0;
 }
 #k7 #bl,
 #k7 #bt {
@@ -92,7 +76,7 @@
   animation: k7-r 0.3s linear infinite;
   border-color: transparent #aaa;
   left: 50%;
-  margin: -12px 0 0-12px;
+  margin: -12px 0 0 -12px;
   top: 50%;
 }
 
@@ -142,13 +126,10 @@
 #k7 #pu::before {
   left: 12px;
 }
-#k7 #cl,
-#k7 #rg,
-#k7 #fl {
+#k7 .k {
   right: 24px;
 }
-#k7 #pl,
-#k7 #lf {
+#k7 .e {
   left: 24px;
 }
 #k7 img,
@@ -184,6 +165,7 @@
   transition: opacity 0.3s 0.1s;
   margin: 0;
   padding: 0;
+  vertical-align: top;
   color: inherit;
 }
 #k7 .b::after,
@@ -225,27 +207,28 @@
 #k7.l {
   left: 0;
 }
-#k7 .f,
 #k7.f,
-html.f {
+[data-f="hidden"] {
   overflow: hidden !important;
 }
 #k7.g {
   transform: scale(0);
 }
-
+#k7 .d {
+  bottom: 24px;
+  height: 48px;
+}
 #sp.u + div>div img {
   opacity: .1;
 }
-@media only screen and (max-width: 320px){
-  #k7 #fl > span {
-    display: none;
-  }
-}
-
 @media (min-width: 1024px) {
-  #k7:not(:hover) #cnt ~ div,
+  #k7:not(:hover) #cn ~ div,
   #k7:not(:hover) #in ~ .b {
     opacity: 0;
+  }
+}
+@media (max-width: 320px){
+  #k7 .d {
+    color: transparent;
   }
 }

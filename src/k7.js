@@ -33,7 +33,7 @@
       this.delayShow = 1330 // Autoplay timeout
       this.showButtons = 1 // Display buttons by default. (true = 1 and false = 0)
       this.showButtonsOnPlay = 1 // Display buttons when autoplay is active.
-      this.extension = 'jpg' // Additional extension for large resolution (empty = same image extension).
+      this.extension = '' // Additional extension for large resolution (empty = same image extension).
       this.container = 'images' // Class name for the image container. If empty, all images are selected.
       this.folder = 'large/' // Folder name or image prefix (prefix should not include '/').
 
@@ -83,7 +83,7 @@
         this.isAutoPlayOn = true
 
         // Set the play button active for the first time (playing)
-        if (this.showButtons) this.play.className = 'b a s o y l q'
+        if (this.showButtons) this.play.className = 'b a s o c q'
 
         if (!this.showButtonsOnPlay) {
           // Hide buttons if configured not to show during auto-play
@@ -140,12 +140,12 @@
       // if show buttons compiled display them
       if (this.showButtons) {
         // [this.foot, this.onow].forEach(el => el.className = '')
-        this.foot.className = ''
-        this.onow.className = ''
-        this.play.className = classNames + ' y l'
+        this.foot.className = 'd e'
+        this.onow.className = 'd k'
+        this.play.className = classNames + ' c'
       }
       // always show close button on clear
-      this.clos.className = classNames + ' j p'
+      this.clos.className = classNames + ' j p k'
       this.leftRightButtonsVisibility()
     }
 
@@ -159,7 +159,8 @@
     closeModal () {
       this.isActive = false
       this.imag.className = 'g h w y l'
-      de.className = de.classList.remove('f'); //de.className.split('f').join('').trim()
+      //de.classList.remove('f'); //de.className.split('f').join('').trim()
+      de.removeAttribute('data-f');
     }
 
     // Show the current image
@@ -199,7 +200,8 @@
       // Activate the UI if not active
       if (!this.isActive) {
         this.isActive = true
-        de.classList.add('f');
+        //de.classList.add('f');
+        de.setAttribute('data-f', 'hidden');
         this.imag.className = 'f w y l'
       }
 
@@ -211,7 +213,7 @@
 
       // Remove old image and append the new one
       this.insi.removeChild(this.imgs)
-      this.imgs = element('img', 'src', fullNamePrefixed, 'alt', index.alt + ' selected')
+      this.imgs = element('img', 'src', fullNamePrefixed, 'class', 'c', 'alt', index.alt + ' selected')
 
       this.setDownloadText(fullNamePrefixed)
 
@@ -325,33 +327,33 @@
         'rel',
         'stylesheet',
         'href',
-        'data:text/css;base64,QGtleWZyYW1lcyBrNy1ye3Rve3RyYW5zZm9ybTpyb3RhdGUoMzYwZGVnKX19I2s3ICosI2s3IDo6YWZ0ZXIsI2s3IDo6YmVmb3Jle2JveC1zaXppbmc6Ym9yZGVyLWJveDtkaXNwbGF5OmlubGluZS1ibG9jaztmb250OjEycHgvNCBzYW5zLXNlcmlmO3Bvc2l0aW9uOmFic29sdXRlfSNrNyAuYiAqe3otaW5kZXg6LTE7cG9pbnRlci1ldmVudHM6bm9uZX0jazd7YmFja2dyb3VuZDp2YXIoLS1jb2xvcjIsICMyMjMpO2NvbG9yOiNhYWE7cG9zaXRpb246Zml4ZWQ7dGV4dC1hbGlnbjpjZW50ZXI7dHJhbnNpdGlvbjp0cmFuc2Zvcm0gLjJzO3VzZXItc2VsZWN0Om5vbmU7ei1pbmRleDo5OTk5OTl9I2s3IGltZ3tiYWNrZ3JvdW5kOnZhcigtLWNvbG9yMSwgIzMzNCk7bWF4LWhlaWdodDoxMDAlO21heC13aWR0aDoxMDAlO3RyYW5zaXRpb246LjJzIG9wYWNpdHl9I2s3ICNmbCwjazcgI3Bse3RleHQtaW5kZW50OjUwcHg7d2hpdGUtc3BhY2U6bm93cmFwO2JvdHRvbToyNHB4O2hlaWdodDo0OHB4fSNrNyAjYWx7cmlnaHQ6NTBweH0jazcgI2FsLCNrNyAjaW4sI2s3ICNpbiBpbWcsI2s3ICNzdHtwb3NpdGlvbjpyZWxhdGl2ZX0jazcgI3N0e3RleHQtaW5kZW50OjB9I2s3ICNibCwjazcgI2J0e3dpZHRoOjE2MHB4O2JvcmRlcjowO2hlaWdodDoxMDAlO2JvcmRlci1yYWRpdXM6MH0jazcgI2xmOjphZnRlciwjazcgI3JnOjphZnRlcntwYWRkaW5nOjlweDt0b3A6MTRweH0jazcgI2xmOjphZnRlcntib3JkZXItd2lkdGg6MnB4IDAgMCAycHg7bGVmdDoxNHB4fSNrNyAjcmc6OmFmdGVye3JpZ2h0OjE0cHg7Ym9yZGVyLXdpZHRoOjJweCAycHggMCAwfSNrNyAjYmw6aG92ZXIgI2xmOjphZnRlcntsZWZ0OjlweH0jazcgI2J0OmhvdmVyICNyZzo6YWZ0ZXJ7cmlnaHQ6OXB4fSNrNyAjY2w6OmFmdGVyLCNrNyAjY2w6OmJlZm9yZXtib3JkZXItd2lkdGg6MCAwIDAgMnB4O2hlaWdodDozMHB4O2xlZnQ6MjNweDt0b3A6MTBweH0jazcgI3B1OjpiZWZvcmUsI2s3ICNzcHtib3JkZXItcmFkaXVzOjUwJTtoZWlnaHQ6MjRweDt3aWR0aDoyNHB4fSNrNyAjc3B7YW5pbWF0aW9uOms3LXIgLjNzIGxpbmVhciBpbmZpbml0ZTtib3JkZXItY29sb3I6dHJhbnNwYXJlbnQgI2FhYTtsZWZ0OjUwJTttYXJnaW46LTEycHggMCAwLTEycHg7dG9wOjUwJX0jazcgI2R3e2JvcmRlci1yYWRpdXM6MCAwIDRweCA0cHg7dG9wOjI3cHg7aGVpZ2h0OjZweDt3aWR0aDoyNHB4O2JvcmRlci10b3A6MH0jazcgI3B1OjpiZWZvcmV7dHJhbnNpdGlvbjouMnMgYm9yZGVyLXJhZGl1czt0b3A6MTJweH0jazcgI3B1LnE6OmJlZm9yZXtib3JkZXItcmFkaXVzOjRweH0jazcgI3B1OjphZnRlcntib3JkZXItY29sb3I6dHJhbnNwYXJlbnQgI2VlZTtib3JkZXItd2lkdGg6NHB4IDAgNHB4IDlweDtsZWZ0OjIwcHg7dG9wOjIwcHg7d2lkdGg6OHB4fSNrNyAjcHUucTo6YWZ0ZXJ7Ym9yZGVyLXdpZHRoOjAgMnB4O3BhZGRpbmctdG9wOjhweH0jazcgI2RsOjphZnRlcntib3JkZXItd2lkdGg6MCAwIDJweCAycHg7Ym90dG9tOjIxcHg7aGVpZ2h0OjEycHg7bGVmdDoxOHB4O3dpZHRoOjEycHh9I2s3ICNkbDo6YmVmb3Jle2JhY2tncm91bmQ6I2VlZTtoZWlnaHQ6MThweDtsZWZ0OjIzcHg7dG9wOjlweDt3aWR0aDoycHh9I2s3ICNjbHt0b3A6MjRweH0jazcgI2R3LCNrNyAjcHU6OmJlZm9yZXtsZWZ0OjEycHh9I2s3ICNjbCwjazcgI2ZsLCNrNyAjcmd7cmlnaHQ6MjRweH0jazcgI2xmLCNrNyAjcGx7bGVmdDoyNHB4fSNrNyAudCwjazcgaW1ne3RvcDo1MCU7ei1pbmRleDotMTt0cmFuc2Zvcm06dHJhbnNsYXRlWSgtNTAlKX0jazcgLnA6OmFmdGVyLCNrNyAucDo6YmVmb3Jle3RyYW5zZm9ybTpyb3RhdGUoNDVkZWcpfSNrNyAuajo6YWZ0ZXJ7dHJhbnNmb3JtOnJvdGF0ZSgtNDVkZWcpfSNrNyAudywjazcud3toZWlnaHQ6MTAwJTt3aWR0aDoxMDAlfSNrNyAuYTo6YWZ0ZXIsI2s3IC5zOjpiZWZvcmUsI2s3IC51e2JvcmRlcjoycHggc29saWQgI2VlZX0jazcgLmJ7YmFja2dyb3VuZDowIDA7aGVpZ2h0OjQ4cHg7d2lkdGg6NDhweDtib3JkZXItcmFkaXVzOjdweDtib3JkZXI6MDtjdXJzb3I6cG9pbnRlcjt0cmFuc2l0aW9uOm9wYWNpdHkgLjNzIC4xczttYXJnaW46MDtwYWRkaW5nOjA7Y29sb3I6aW5oZXJpdH0jazcgLmI6OmFmdGVyLCNrNyAuYjo6YmVmb3Jle2NvbnRlbnQ6IiJ9I2s3IC5iOmZvY3VzLCNrNyAuYjpob3ZlciwjazcgLmI6aG92ZXIgc3BhbntiYWNrZ3JvdW5kOiMwNzA3MDczMztvcGFjaXR5OjE7b3V0bGluZTowfSNrNyAjYmw6Zm9jdXMsI2s3ICNidDpmb2N1c3tiYWNrZ3JvdW5kOjAgMH0jazcgLmI6YWN0aXZle29wYWNpdHk6LjN9I2s3IC5ue2Rpc3BsYXk6bm9uZX0jazcgLmgsI2s3Lmh7b3BhY2l0eTowfSNrNyAub3tvcGFjaXR5Oi43fSNrNyAucntyaWdodDowfSNrNyAueSwjazcueXt0b3A6MH0jazcgLmwsI2s3Lmx7bGVmdDowfSNrNyAuZiwjazcuZixodG1sLmZ7b3ZlcmZsb3c6aGlkZGVuIWltcG9ydGFudH0jazcuZ3t0cmFuc2Zvcm06c2NhbGUoMCl9I3NwLnUrZGl2PmRpdiBpbWd7b3BhY2l0eTouMX1AbWVkaWEgb25seSBzY3JlZW4gYW5kIChtYXgtd2lkdGg6MzIwcHgpeyNrNyAjZmw+c3BhbntkaXNwbGF5Om5vbmV9fUBtZWRpYSAobWluLXdpZHRoOjEwMjRweCl7I2s3Om5vdCg6aG92ZXIpICNjbnR+ZGl2LCNrNzpub3QoOmhvdmVyKSAjaW5+LmJ7b3BhY2l0eTowfX0='
+        'data:text/css;base64,QGtleWZyYW1lcyBrNy1ye3Rve3RyYW5zZm9ybTpyb3RhdGUoMzYwZGVnKX19I2s3ICosI2s3IDo6YWZ0ZXIsI2s3IDo6YmVmb3Jle2JveC1zaXppbmc6Ym9yZGVyLWJveDtkaXNwbGF5OmlubGluZS1ibG9jaztmb250OjEycHgvNCBzYW5zLXNlcmlmO3Bvc2l0aW9uOmFic29sdXRlfSNrNyAuY3twb3NpdGlvbjpyZWxhdGl2ZX0jazcgLmIgKnt6LWluZGV4Oi0xO3BvaW50ZXItZXZlbnRzOm5vbmV9I2s3e2JhY2tncm91bmQ6dmFyKC0tY29sb3IyLCAjMjIzKTtjb2xvcjojYWFhO3Bvc2l0aW9uOmZpeGVkO3RleHQtYWxpZ246Y2VudGVyO3RyYW5zaXRpb246dHJhbnNmb3JtIC4yczt1c2VyLXNlbGVjdDpub25lO3otaW5kZXg6OTk5OTk5fSNrNyBpbWd7YmFja2dyb3VuZDp2YXIoLS1jb2xvcjEsICMzMzQpO21heC1oZWlnaHQ6MTAwJTttYXgtd2lkdGg6MTAwJTt0cmFuc2l0aW9uOi4ycyBvcGFjaXR5fSNrNyAjYmwsI2s3ICNidHt3aWR0aDoxNjBweDtib3JkZXI6MDtoZWlnaHQ6MTAwJTtib3JkZXItcmFkaXVzOjB9I2s3ICNsZjo6YWZ0ZXIsI2s3ICNyZzo6YWZ0ZXJ7cGFkZGluZzo5cHg7dG9wOjE0cHh9I2s3ICNsZjo6YWZ0ZXJ7Ym9yZGVyLXdpZHRoOjJweCAwIDAgMnB4O2xlZnQ6MTRweH0jazcgI3JnOjphZnRlcntyaWdodDoxNHB4O2JvcmRlci13aWR0aDoycHggMnB4IDAgMH0jazcgI2JsOmhvdmVyICNsZjo6YWZ0ZXJ7bGVmdDo5cHh9I2s3ICNidDpob3ZlciAjcmc6OmFmdGVye3JpZ2h0OjlweH0jazcgI2NsOjphZnRlciwjazcgI2NsOjpiZWZvcmV7Ym9yZGVyLXdpZHRoOjAgMCAwIDJweDtoZWlnaHQ6MzBweDtsZWZ0OjIzcHg7dG9wOjEwcHh9I2s3ICNwdTo6YmVmb3JlLCNrNyAjc3B7Ym9yZGVyLXJhZGl1czo1MCU7aGVpZ2h0OjI0cHg7d2lkdGg6MjRweH0jazcgI3Nwe2FuaW1hdGlvbjprNy1yIC4zcyBsaW5lYXIgaW5maW5pdGU7Ym9yZGVyLWNvbG9yOnRyYW5zcGFyZW50ICNhYWE7bGVmdDo1MCU7bWFyZ2luOi0xMnB4IDAgMC0xMnB4O3RvcDo1MCV9I2s3ICNkd3tib3JkZXItcmFkaXVzOjAgMCA0cHggNHB4O3RvcDoyN3B4O2hlaWdodDo2cHg7d2lkdGg6MjRweDtib3JkZXItdG9wOjB9I2s3ICNwdTo6YmVmb3Jle3RyYW5zaXRpb246LjJzIGJvcmRlci1yYWRpdXM7dG9wOjEycHh9I2s3ICNwdS5xOjpiZWZvcmV7Ym9yZGVyLXJhZGl1czo0cHh9I2s3ICNwdTo6YWZ0ZXJ7Ym9yZGVyLWNvbG9yOnRyYW5zcGFyZW50ICNlZWU7Ym9yZGVyLXdpZHRoOjRweCAwIDRweCA5cHg7bGVmdDoyMHB4O3RvcDoyMHB4O3dpZHRoOjhweH0jazcgI3B1LnE6OmFmdGVye2JvcmRlci13aWR0aDowIDJweDtwYWRkaW5nLXRvcDo4cHh9I2s3ICNkbDo6YWZ0ZXJ7Ym9yZGVyLXdpZHRoOjAgMCAycHggMnB4O2JvdHRvbToyMXB4O2hlaWdodDoxMnB4O2xlZnQ6MThweDt3aWR0aDoxMnB4fSNrNyAjZGw6OmJlZm9yZXtiYWNrZ3JvdW5kOiNlZWU7aGVpZ2h0OjE4cHg7bGVmdDoyM3B4O3RvcDo5cHg7d2lkdGg6MnB4fSNrNyAjY2x7dG9wOjI0cHh9I2s3ICNkdywjazcgI3B1OjpiZWZvcmV7bGVmdDoxMnB4fSNrNyAua3tyaWdodDoyNHB4fSNrNyAuZXtsZWZ0OjI0cHh9I2s3IC50LCNrNyBpbWd7dG9wOjUwJTt6LWluZGV4Oi0xO3RyYW5zZm9ybTp0cmFuc2xhdGVZKC01MCUpfSNrNyAucDo6YWZ0ZXIsI2s3IC5wOjpiZWZvcmV7dHJhbnNmb3JtOnJvdGF0ZSg0NWRlZyl9I2s3IC5qOjphZnRlcnt0cmFuc2Zvcm06cm90YXRlKC00NWRlZyl9I2s3IC53LCNrNy53e2hlaWdodDoxMDAlO3dpZHRoOjEwMCV9I2s3IC5hOjphZnRlciwjazcgLnM6OmJlZm9yZSwjazcgLnV7Ym9yZGVyOjJweCBzb2xpZCAjZWVlfSNrNyAuYntiYWNrZ3JvdW5kOjAgMDtoZWlnaHQ6NDhweDt3aWR0aDo0OHB4O2JvcmRlci1yYWRpdXM6N3B4O2JvcmRlcjowO2N1cnNvcjpwb2ludGVyO3RyYW5zaXRpb246b3BhY2l0eSAuM3MgLjFzO21hcmdpbjowO3BhZGRpbmc6MDt2ZXJ0aWNhbC1hbGlnbjp0b3A7Y29sb3I6aW5oZXJpdH0jazcgLmI6OmFmdGVyLCNrNyAuYjo6YmVmb3Jle2NvbnRlbnQ6IiJ9I2s3IC5iOmZvY3VzLCNrNyAuYjpob3ZlciwjazcgLmI6aG92ZXIgc3BhbntiYWNrZ3JvdW5kOiMwNzA3MDczMztvcGFjaXR5OjE7b3V0bGluZTowfSNrNyAjYmw6Zm9jdXMsI2s3ICNidDpmb2N1c3tiYWNrZ3JvdW5kOjAgMH0jazcgLmI6YWN0aXZle29wYWNpdHk6LjN9I2s3IC5ue2Rpc3BsYXk6bm9uZX0jazcgLmgsI2s3Lmh7b3BhY2l0eTowfSNrNyAub3tvcGFjaXR5Oi43fSNrNyAucntyaWdodDowfSNrNyAueSwjazcueXt0b3A6MH0jazcgLmwsI2s3Lmx7bGVmdDowfSNrNy5mLFtkYXRhLWY9aGlkZGVuXXtvdmVyZmxvdzpoaWRkZW4haW1wb3J0YW50fSNrNy5ne3RyYW5zZm9ybTpzY2FsZSgwKX0jazcgLmR7Ym90dG9tOjI0cHg7aGVpZ2h0OjQ4cHh9I3NwLnUrZGl2PmRpdiBpbWd7b3BhY2l0eTouMX1AbWVkaWEgKG1pbi13aWR0aDoxMDI0cHgpeyNrNzpub3QoOmhvdmVyKSAjY25+ZGl2LCNrNzpub3QoOmhvdmVyKSAjaW5+LmJ7b3BhY2l0eTowfX1AbWVkaWEgKG1heC13aWR0aDozMjBweCl7I2s3IC5ke2NvbG9yOnRyYW5zcGFyZW50fX0='
       )
       append(d.getElementsByTagName('head')[0], resource)
 
       // DOM elements setup
       /** @type {HTMLElement} */
-      this.clos = element('button', 'id', 'cl', 'class', 'a p o b j s', 'aria-label', 'Close', 'title', 'Close (Esc)')
+      this.clos = element('button', 'id', 'cl', 'class', 'a p o b j s k', 'aria-label', 'Close', 'title', 'Close (Esc)')
       /** @type {HTMLElement} */
-      this.ilef = element('span', 'id', 'lf', 'class', 'a j o b t')
+      this.ilef = element('span', 'id', 'lf', 'class', 'a j o b t e')
       /** @type {HTMLElement} */
-      this.irig = element('span', 'id', 'rg', 'class', 'a p o b t')
+      this.irig = element('span', 'id', 'rg', 'class', 'a p o b t k')
       /** @type {HTMLElement} */
-      this.imag = element('div', 'id', 'k7', 'class', 'g h f w y l', 'role', 'dialog', 'aria-label', 'Image Gallery')
+      this.imag = element('div', 'id', 'k7', 'class', 'g h f w y l', 'role', 'dialog', 'aria-label', 'Gallery')
       /** @type {HTMLElement} */
-      this.cent = element('div', 'id', 'cnt', 'class', 'y l w')
+      this.cent = element('div', 'id', 'cn', 'class', 'y l w')
       /** @type {HTMLElement} */
       this.left = element('button', 'id', 'bl', 'class', 'b y l', 'aria-label', 'Previous (Left Arrow)')
       /** @type {HTMLElement} */
       this.rigt = element('button', 'id', 'bt', 'class', 'b y r', 'aria-label', 'Next (Right Arrow)')
       /** @type {HTMLElement} */
-      this.insi = element('div', 'id', 'in', 'class', 'w')
+      this.insi = element('div', 'id', 'in', 'class', 'c w')
       /** @type {HTMLElement} */
       this.spin = element('div', 'id', 'sp', 'class', 'n', 'aria-hidden', 'true')
       /** @type {HTMLElement} */
-      this.imgs = element('img', 'src', 'data:image/gif;base64,R0lGODlhAQABAPAAAP///wAAACwAAAAAAQABAEACAkQBADs=', 'alt', '', 'loading', 'lazy')
-      // append(this.left, d.createTextNode('Previous')); // to add text to button for Previous css can be added for better UI ->text-indent: 50px;
-      // append(this.rigt, d.createTextNode('Next'));  // to add text to button for Next css can be added for better UI ->text-indent: -50px;
+      this.imgs = element('img', 'src', 'class', 'c', 'data:image/gif;base64,R0lGODlhAQABAPAAAP///wAAACwAAAAAAQABAEACAkQBADs=', 'alt', '', 'loading', 'lazy')
+      // append(this.left, d.createTextNode('Previous')); // to add text to button for Previous
+      // append(this.rigt, d.createTextNode('Next'));  // to add text to button for Next
       append(this.insi, this.imgs)
       append(this.rigt, this.irig)
       append(this.left, this.ilef)
@@ -361,23 +363,22 @@
 
       if (this.showButtons) {
         /** @type {HTMLElement} */
-        this.wdow = element('button', 'id', 'dl', 'class', 'y r a j o b', 'aria-label', 'download')
+        this.wdow = element('button', 'id', 'dl', 'class', 'b a j o c', 'aria-label', 'download')
         /** @type {HTMLElement} */
-        this.play = element('button', 'id', 'pu', 'class', 'y l a s o b', 'aria-label', 'play')
+        this.play = element('button', 'id', 'pu', 'class', 'b a s o c', 'aria-label', 'play')
         /** @type {HTMLElement} */
-        this.foot = element('div', 'id', 'pl')
+        this.foot = element('div', 'class', 'd e')
         /** @type {HTMLElement} */
-        this.onow = element('div', 'id', 'fl')
-        /** @type {HTMLElement} */
-        this.alts = element('span', 'id', 'al', 'class', 'f')
-        /** @type {HTMLElement} */
-        this.fine = element('span', 'id', 'st')
+        this.onow = element('div', 'class', 'd k')
+        /** @type {Text} */
+        this.alts = d.createTextNode('')
+        /** @type {Text} */
+        this.fine = d.createTextNode('')
         /** @type {HTMLElement} */
         this.down = element('span', 'id', 'dw', 'class', 'u')
-
-        append(this.onow, this.alts, this.wdow)
+        append(this.onow, d.createTextNode('Image '), this.fine, d.createTextNode(' of ' + this.imagesArray.length), this.play)
+        append(this.foot, this.wdow, this.alts)
         append(this.imag, this.onow, this.foot)
-        append(this.foot, this.play, d.createTextNode('Image '), this.fine, d.createTextNode(' of ' + this.imagesArray.length))
         append(this.wdow, this.down)
       }
     }
