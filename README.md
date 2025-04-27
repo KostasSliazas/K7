@@ -13,17 +13,9 @@ To override the default extension, add a `data-ext` attribute to the `<img>` tag
 ```
 This replaces the default `.jpg` extension with `.webp` for higher-resolution loading. If the `data-ext` attribute is set, it overrides the default extension. If not, the extensions should match (e.g., `.jpg` remains `.jpg`). For optimization, the `index.dataset.ext` check can be removed if unnecessary, as a micro-optimization. Note: This does not apply to `.svg` files.
 
-Configurations can be found in the code (`[// user config]`).
+Configurations can be found in the code (`[// user config]`
 
-To adjust image proportions, you can add the following CSS rule:
-```css
-#k7 img {
-  width: 100%;
-  height: 100%;
-}
-```
-
-To modify background colors, update the CSS variables like so:
+CSS background colors, update the CSS variables like so:
 ```css
 :root {
   --color1: #ee7;
