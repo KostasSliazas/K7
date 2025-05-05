@@ -5,6 +5,22 @@
 - [Build Instructions](#build-instructions)
 - [About](#about)
 
+## Getting Started
+
+### Clone the Repository
+
+```bash
+git clone https://github.com/KostasSliazas/K7.git
+cd K7
+```
+
+### Open the Gallery
+
+Open `index.html` in your preferred browser for example:
+
+```bash
+firefox index.html   # Linux
+```
 ## Custom Image Extensions and Other Configuration
 
 To override the default extension, add a `data-ext` attribute to the `<img>` tag:
