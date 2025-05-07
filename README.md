@@ -1,4 +1,4 @@
-# K7 Images Gallery — A Simple JavaScript Image Gallery
+# Image Gallery
 
 ## Table of Contents
 - [Custom Image Extensions and Other Configuration](#custom-image-extensions-and-other-configuration)
