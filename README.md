@@ -11,7 +11,6 @@
 
 ```bash
 git clone https://github.com/KostasSliazas/K7.git
-cd K7
 ```
 
 ### Open the Gallery
