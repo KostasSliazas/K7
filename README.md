@@ -1,5 +1,9 @@
 # image gallery
-[![License](https://img.shields.io/github/license/KostasSliazas/K7)](LICENSE) [![Stars](https://img.shields.io/github/stars/KostasSliazas/K7?style=social)](https://github.com/KostasSliazas/K7/stargazers) [![Forks](https://img.shields.io/github/forks/KostasSliazas/K7?style=social)](https://github.com/KostasSliazas/K7/forks) [![Issues](https://img.shields.io/github/issues/KostasSliazas/K7)](https://github.com/KostasSliazas/K7/issues) [![Last Commit](https://img.shields.io/github/last-commit/KostasSliazas/K7)](https://github.com/KostasSliazas/K7/commits)
+[![License](https://img.shields.io/github/license/KostasSliazas/K7)](LICENSE)
+[![Stars](https://img.shields.io/github/stars/KostasSliazas/K7?style=social)](https://github.com/KostasSliazas/K7/stargazers)
+[![Forks](https://img.shields.io/github/forks/KostasSliazas/K7?style=social)](https://github.com/KostasSliazas/K7/forks)
+[![Issues](https://img.shields.io/github/issues/KostasSliazas/K7)](https://github.com/KostasSliazas/K7/issues)
+[![Last Commit](https://img.shields.io/github/last-commit/KostasSliazas/K7)](https://github.com/KostasSliazas/K7/commits)
 
 Simple image gallery built with vanilla JavaScript (~7.7KB in size). It’s lightweight, responsive, and feature-packed, offering a seamless experience for viewing images.
 
@@ -11,35 +15,31 @@ Simple image gallery built with vanilla JavaScript (~7.7KB in size). It’s ligh
 - [Build](#-build)
 - [License](#-license)
 - [Contributing](#-contributing)
-- [Author](#-author)
 - [Contributors](#-contributors)
 - [Badges](#-badges)
 
 
 ## 🚀 Features
 
-- 
 - Responsive Design: Works seamlessly on all screen sizes, from mobile to desktop.
-- Keyboard Navigation: Navigate through images using keyboard arrow keys for a more interactive experience.
-- Download Button: Users can easily download the gallery images with a click of a button.
-- Autoplay Button: Automatically cycle through images when the autoplay button is clicked.
-- 
+-     Keyboard Navigation: Navigate through images using keyboard arrow keys for a more interactive experience.
+-     Download Button: Users can easily download the gallery images with a click of a button.
+-     Autoplay Button: Automatically cycle through images when the autoplay button is clicked.
 
 ## 🛠️ Installation
 
 ```
-
+<script defer src="src/k7.min.js?v=7"></script>
 ```
 
 ## ⚙️ Usage
 
 <h1>photos</h1>
-<div class="images-container images">
-<img src="photos/photo01.webp" loading="lazy" alt="photo01">
-<img src="photos/photo02.webp" loading="lazy" alt="photo02">
-<img src="photos/photo03.webp" loading="lazy" alt="photo03">
+            <div class="images-container images">
+              <img src="photos/photo01.webp" loading="lazy" alt="photo01">
+              <img src="photos/photo02.webp" loading="lazy" alt="photo02">
+              <img src="photos/photo03.webp" loading="lazy" alt="photo03">
 </div>
-
 
 ## 🔧 Configuration
 
@@ -78,15 +78,11 @@ To contribute to this project, fork this repository, create a new branch, and su
 Clone the repository with the following command:
 
 ```bash
-git clone https://github.com/KostasSliazas/K7
+git clone Kostas Šliažas
 ```
+## 👥 Contributors
 
-## 👤 Author
-
-Kostas Šliažas
-    ## 👥 Contributors
-
-    | Username | Profile |
-    |----------|---------|
-    | [KostasSliazas](https://github.com/KostasSliazas) | [Profile Link](https://github.com/KostasSliazas) |
-    | [syed-ghufran-hassan](https://github.com/syed-ghufran-hassan) | [Profile Link](https://github.com/syed-ghufran-hassan) |
+| Username | Profile |
+|----------|---------|
+| [KostasSliazas](https://github.com/KostasSliazas) | https://github.com/KostasSliazas |
+| [syed-ghufran-hassan](https://github.com/syed-ghufran-hassan) | https://github.com/syed-ghufran-hassan |
