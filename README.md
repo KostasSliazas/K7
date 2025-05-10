@@ -16,8 +16,6 @@ K7 Gallery is a simple image gallery built with vanilla JavaScript (~7.7KB in si
 - [Contributing](#-contributing)
 - [Author](#-author)
 - [Contributors](#-contributors)
-- [Badges](#-badges)
-
 
 ## 🚀 Features
 
@@ -44,9 +42,9 @@ Link the necessary JS file in your HTML. Add this script to the <head> of your H
 Custom Image Extensions and Other Configuration
 
 To override the default extension, add a data-ext attribute to the <img> tag:
-
+```
 <img src="photos/photo16.webp" loading="lazy" alt="photo16" data-ext="webp">
-
+```
 This replaces the default .jpg extension with .webp for higher-resolution loading. If the data-ext attribute is set, it overrides the default extension. If not, the extensions should match (e.g., .jpg remains .jpg). For optimization, the index.dataset.ext check can be removed if unnecessary, as a micro-optimization. Note: This does not apply to .svg files.
 
 Configurations can be found in the code ([// user config]
