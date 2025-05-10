@@ -11,7 +11,7 @@ K7 Gallery is a simple image gallery built with vanilla JavaScript (~7.7KB in si
 - [Contributing](#-contributing)
 - [Author](#-author)
 - [Contributors](#-contributors)
-- [Badges](#-badges)## 🏷️ Badges
+- [Badges](#-badges)
 
 [![License](https://img.shields.io/github/license/KostasSliazas/K7)](LICENSE)
 [![Stars](https://img.shields.io/github/stars/KostasSliazas/K7?style=social)](https://github.com/KostasSliazas/K7/stargazers)
