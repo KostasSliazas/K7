@@ -26,11 +26,11 @@ K7 Gallery is a simple image gallery built with vanilla JavaScript (~7.7KB in si
 
 ## 🛠️ Installation
 
-```
 Include the gallery in your HTML:
 
 Link the necessary JS file in your HTML. Add this script to the <head> of your HTML:
 
+```
 <script defer src="src/k7.min.js?v=7"></script>
 ```
 
