@@ -60,8 +60,11 @@ Check out the demo: [K7 Image Gallery](https://kostassliazas.github.io/K7/)
 
 Thanks goes to these wonderful people:
 
+## Contributors ✨
+
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/KostasSliazas"><img src="https://avatars.githubusercontent.com/KostasSliazas?v=4" width="100px;" alt=""/><br /><sub><b>KostasSliazas</b></sub></a><br />💻 📖</td>
+    <td align="center"><a href="https://github.com/KostasSliazas"><img src="https://avatars.githubusercontent.com/u/31342007?v=4" width="80px;" style="border-radius:50%;" alt="KostasSliazas"/><br /><sub><b>KostasSliazas</b></sub></a></td>
+    <td align="center"><a href="https://github.com/syed-ghufran-hassan"><img src="https://avatars.githubusercontent.com/u/20126545?v=4" width="80px;" style="border-radius:50%;" alt="syed-ghufran-hassan"/><br /><sub><b>syed-ghufran-hassan</b></sub></a></td>
   </tr>
 </table>
