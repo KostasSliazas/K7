@@ -1,5 +1,9 @@
 # Image gallery
-
+[![License](https://img.shields.io/github/license/KostasSliazas/K7)](LICENSE)
+[![Stars](https://img.shields.io/github/stars/KostasSliazas/K7?style=social)](https://github.com/KostasSliazas/K7/stargazers)
+[![Forks](https://img.shields.io/github/forks/KostasSliazas/K7?style=social)](https://github.com/KostasSliazas/K7/forks)
+[![Issues](https://img.shields.io/github/issues/KostasSliazas/K7)](https://github.com/KostasSliazas/K7/issues)
+[![Last Commit](https://img.shields.io/github/last-commit/KostasSliazas/K7)](https://github.com/KostasSliazas/K7/commits)
 K7 Gallery is a simple image gallery built with vanilla JavaScript (~7.7KB in size). It’s lightweight, responsive, and feature-packed, offering a seamless experience for viewing images.
 
 ## 📚 Table of Contents
@@ -13,27 +17,24 @@ K7 Gallery is a simple image gallery built with vanilla JavaScript (~7.7KB in si
 - [Contributors](#-contributors)
 - [Badges](#-badges)
 
-[![License](https://img.shields.io/github/license/KostasSliazas/K7)](LICENSE)
-[![Stars](https://img.shields.io/github/stars/KostasSliazas/K7?style=social)](https://github.com/KostasSliazas/K7/stargazers)
-[![Forks](https://img.shields.io/github/forks/KostasSliazas/K7?style=social)](https://github.com/KostasSliazas/K7/forks)
-[![Issues](https://img.shields.io/github/issues/KostasSliazas/K7)](https://github.com/KostasSliazas/K7/issues)
-[![Last Commit](https://img.shields.io/github/last-commit/KostasSliazas/K7)](https://github.com/KostasSliazas/K7/commits)
-<!-- Uncomment if using GitHub Actions -->
-<!-- [![CI](https://github.com/KostasSliazas/K7/actions/workflows/ci.yml/badge.svg)](https://github.com/KostasSliazas/K7/actions) -->
 
 ## 🚀 Features
 
 - Responsive Design: Works seamlessly on all screen sizes, from mobile to desktop.
+- 
 - Keyboard Navigation: Navigate through images using keyboard arrow keys for a more interactive experience.
+- 
 - Download Button: Users can easily download the gallery images with a click of a button.
+- 
 - Autoplay Button: Automatically cycle through images when the autoplay button is clicked.
 
 ## 🛠️ Installation
 
+```
 Include the gallery in your HTML:
+
 Link the necessary JS file in your HTML. Add this script to the <head> of your HTML:
 
-```
 <script defer src="src/k7.min.js?v=7"></script>
 ```
 
@@ -43,9 +44,7 @@ Custom Image Extensions and Other Configuration
 
 To override the default extension, add a data-ext attribute to the <img> tag:
 
-```
 <img src="photos/photo16.webp" loading="lazy" alt="photo16" data-ext="webp">
-```
 
 This replaces the default .jpg extension with .webp for higher-resolution loading. If the data-ext attribute is set, it overrides the default extension. If not, the extensions should match (e.g., .jpg remains .jpg). For optimization, the index.dataset.ext check can be removed if unnecessary, as a micro-optimization. Note: This does not apply to .svg files.
 
