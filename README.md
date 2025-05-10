@@ -29,7 +29,9 @@ Custom Image Extensions and Other Configuration
 
 To override the default extension, add a data-ext attribute to the <img> tag:
 
-<img src="photos/photo16.webp" loading="lazy" alt="photo16" data-ext="webp">
+```
+data-ext="webp"
+```
 
 This replaces the default .jpg extension with .webp for higher-resolution loading. If the data-ext attribute is set, it overrides the default extension. If not, the extensions should match (e.g., .jpg remains .jpg). For optimization, the index.dataset.ext check can be removed if unnecessary, as a micro-optimization. Note: This does not apply to .svg files.
 
@@ -67,11 +69,6 @@ To contribute to this project:
 - Fork this repo
 - Create a branch
 - Submit a PR
-
-Clone:
-```bash
-git clone https://github.com/KostasSliazas/K7
-```
 
 ## 👤 Author
 
