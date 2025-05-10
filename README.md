@@ -4,7 +4,7 @@
 - [Custom Image Extensions and Other Configuration](#custom-image-extensions-and-other-configuration)
 - [Build Instructions](#build-instructions)
 - [About](#about)
-- [Contibutors](#Contibutors)
+- [Contributors](#Contributors)
 
 ## Getting Started
 
