@@ -4,6 +4,7 @@
 [![Forks](https://img.shields.io/github/forks/KostasSliazas/K7?style=social)](https://github.com/KostasSliazas/K7/forks)
 [![Issues](https://img.shields.io/github/issues/KostasSliazas/K7)](https://github.com/KostasSliazas/K7/issues)
 [![Last Commit](https://img.shields.io/github/last-commit/KostasSliazas/K7)](https://github.com/KostasSliazas/K7/commits)
+
 K7 Gallery is a simple image gallery built with vanilla JavaScript (~7.7KB in size). It’s lightweight, responsive, and feature-packed, offering a seamless experience for viewing images.
 
 ## 📚 Table of Contents
