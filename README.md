@@ -1,64 +1,81 @@
-# Image Gallery
+# Image gallery
 
-## Table of Contents
-- [Custom Image Extensions and Other Configuration](#custom-image-extensions-and-other-configuration)
-- [Build Instructions](#build-instructions)
-- [About](#about)
-- [Contributors](#Contributors)
+[![License](https://img.shields.io/github/license/KostasSliazas/K7)](LICENSE)
+[![Stars](https://img.shields.io/github/stars/KostasSliazas/K7?style=social)](https://github.com/KostasSliazas/K7/stargazers)
+[![Forks](https://img.shields.io/github/forks/KostasSliazas/K7?style=social)](https://github.com/KostasSliazas/K7/forks)
+[![Issues](https://img.shields.io/github/issues/KostasSliazas/K7)](https://github.com/KostasSliazas/K7/issues)
+[![Last Commit](https://img.shields.io/github/last-commit/KostasSliazas/K7)](https://github.com/KostasSliazas/K7/commits)
 
-## Getting Started
+Built with vanilla JavaScript (~7.7KB in size).
 
-### Clone the Repository
+## 📚 Table of Contents
+- [Installation](#️-installation)
+- [Configuration](#-configuration)
+- [Build](#-build)
+- [License](#-license)
+- [Contributing](#-contributing)
+- [Author](#-author)
+- [Contributors](#contributors-)
 
-```bash
+## 🛠️ Installation
+
+```
 git clone https://github.com/KostasSliazas/K7.git
 ```
 
-### Open the Gallery
+## 🔧 Configuration
 
-Open `index.html` in your preferred browser for example:
+Custom Image Extensions and Other Configuration
 
-```bash
-firefox index.html   # Linux
-```
-## Custom Image Extensions and Other Configuration
+To override the default extension, add a data-ext attribute to the <img> tag:
 
-To override the default extension, add a `data-ext` attribute to the `<img>` tag:
-```html
 <img src="photos/photo16.webp" loading="lazy" alt="photo16" data-ext="webp">
-```
-This replaces the default `.jpg` extension with `.webp` for higher-resolution loading. If the `data-ext` attribute is set, it overrides the default extension. If not, the extensions should match (e.g., `.jpg` remains `.jpg`). For optimization, the `index.dataset.ext` check can be removed if unnecessary, as a micro-optimization. Note: This does not apply to `.svg` files.
 
-Configurations can be found in the code (`[// user config]`
+This replaces the default .jpg extension with .webp for higher-resolution loading. If the data-ext attribute is set, it overrides the default extension. If not, the extensions should match (e.g., .jpg remains .jpg). For optimization, the index.dataset.ext check can be removed if unnecessary, as a micro-optimization. Note: This does not apply to .svg files.
+
+Configurations can be found in the code ([// user config]
 
 CSS background colors, update the CSS variables like so:
-```css
+
 :root {
   --color1: #ee7;
   --color2: #777;
 }
-```
+
 CSS is encoded in Base64, which typically increases the file size. However, the CSS file is still included and can be separated from the JavaScript.
 
 Note: There's no need to include a separate stylesheet; all styles are managed directly in JavaScript.
 
-## Build Instructions
+## 🔨 Build
 
-This gallery is compiled using Google Closure Compiler:
-```bash
-google-closure-compiler -O ADVANCED k7.js --js_output_file k7.min.js
 ```
-Without recompiling, just need to change (a.dataset.ext || "jpg") to set a default extension, for example, (a.dataset.ext || "webp"), and "large/" for greater resolutions, for example, "larger-" as a prefix or "hd1080/" as a folder.
-There is another version available—if you have issues with fullscreen in "Project -Kitten", you can use the version with height: 100dvh compiled in css.https://raw.githubusercontent.com/KostasSliazas/project-kitten/refs/heads/main/js/gall7.min.v7.js
+This gallery is compiled using Google Closure Compiler:
 
-## About
-Check out the demo: [K7 Image Gallery](https://kostassliazas.github.io/K7/)
+google-closure-compiler -O ADVANCED k7.js --js_output_file k7.min.js
 
-- Built with **vanilla JavaScript** (~7.7KB in size).
+Without recompiling, just need to change (a.dataset.ext || "jpg") to set a default extension, for example, (a.dataset.ext || "webp"), and "large/" for greater resolutions, for example, "larger-" as a prefix or "hd1080/" as a folder. There is another version available—if you have issues with fullscreen in "Project -Kitten", you can use the version with height: 100dvh compiled in css.https://raw.githubusercontent.com/KostasSliazas/project-kitten/refs/heads/main/js/gall7.min.v7.js
+```
 
-## Contributors ✨
+## 📄 License
 
-Thanks goes to these wonderful people:
+This project is licensed under the [MIT License](LICENSE).
+
+## 💬 Contributing
+
+To contribute to this project:
+
+- Fork this repo
+- Create a branch
+- Submit a PR
+
+Clone:
+```bash
+git clone https://github.com/KostasSliazas/K7
+```
+
+## 👤 Author
+
+Kostas Šliažas
 
 ## Contributors ✨
 
