@@ -4,6 +4,7 @@
 - [Custom Image Extensions and Other Configuration](#custom-image-extensions-and-other-configuration)
 - [Build Instructions](#build-instructions)
 - [About](#about)
+- [Contibutors](#Contibutors)
 
 ## Getting Started
 
@@ -51,7 +52,16 @@ Without recompiling, just need to change (a.dataset.ext || "jpg") to set a defau
 There is another version available—if you have issues with fullscreen in "Project -Kitten", you can use the version with height: 100dvh compiled in css.https://raw.githubusercontent.com/KostasSliazas/project-kitten/refs/heads/main/js/gall7.min.v7.js
 
 ## About
-
 Check out the demo: [K7 Image Gallery](https://kostassliazas.github.io/K7/)
 
 - Built with **vanilla JavaScript** (~7.7KB in size).
+
+## Contributors ✨
+
+Thanks goes to these wonderful people:
+
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/KostasSliazas"><img src="https://avatars.githubusercontent.com/KostasSliazas?v=4" width="100px;" alt=""/><br /><sub><b>KostasSliazas</b></sub></a><br />💻 📖</td>
+  </tr>
+</table>
