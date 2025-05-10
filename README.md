@@ -24,11 +24,8 @@ K7 Gallery is a simple image gallery built with vanilla JavaScript (~7.7KB in si
 ## 🚀 Features
 
 - Responsive Design: Works seamlessly on all screen sizes, from mobile to desktop.
-- 
 - Keyboard Navigation: Navigate through images using keyboard arrow keys for a more interactive experience.
-- 
 - Download Button: Users can easily download the gallery images with a click of a button.
-- 
 - Autoplay Button: Automatically cycle through images when the autoplay button is clicked.
 
 ## 🛠️ Installation
