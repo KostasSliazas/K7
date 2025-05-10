@@ -28,17 +28,17 @@ Simple image gallery built with vanilla JavaScript (~7.7KB in size). It’s ligh
 ## 🛠️ Installation
 
 ```
-<script defer src="src/k7.min.js?v=7"></script>
+&lt;script defer src=&quot;src/k7.min.js?v=7&quot;&gt;&lt;/script&gt;
 ```
 
 ## ⚙️ Usage
 
-<h1>photos</h1>
-<div class="images-container images">
-<img src="photos/photo01.webp" loading="lazy" alt="photo01">
-<img src="photos/photo02.webp" loading="lazy" alt="photo02">
-<img src="photos/photo03.webp" loading="lazy" alt="photo03">
-</div>
+&lt;h1&gt;photos&lt;/h1&gt;
+&lt;div class=&quot;images-container images&quot;&gt;
+&lt;img src=&quot;photos/photo01.webp&quot; loading=&quot;lazy&quot; alt=&quot;photo01&quot;&gt;
+&lt;img src=&quot;photos/photo02.webp&quot; loading=&quot;lazy&quot; alt=&quot;photo02&quot;&gt;
+&lt;img src=&quot;photos/photo03.webp&quot; loading=&quot;lazy&quot; alt=&quot;photo03&quot;&gt;
+&lt;/div&gt;
 
 
 ## 🔧 Configuration
@@ -47,7 +47,7 @@ Custom Image Extensions and Other Configuration
 
 To override the default extension, add a data-ext attribute to the tag:
 
-<img src="photos/photo16.webp" loading="lazy" alt="photo16" data-ext="webp">
+&lt;img src=&quot;photos/photo16.webp&quot; loading=&quot;lazy&quot; alt=&quot;photo16&quot; data-ext=&quot;webp&quot;&gt;
 
 This replaces the default .jpg extension with .webp for higher-resolution loading. If the data-ext attribute is set, it overrides the default extension. If not, the extensions should match (e.g., .jpg remains .jpg). For optimization, the index.dataset.ext check can be removed if unnecessary, as a micro-optimization. Note: This does not apply to .svg files.
 
@@ -59,7 +59,7 @@ CSS background colors, update the CSS variables like so:
 
 CSS is encoded in Base64, which typically increases the file size. However, the CSS file is still included and can be separated from the JavaScript.
 
-Note: There's no need to include a separate stylesheet; all styles are managed directly in JavaScript.
+Note: There&#039;s no need to include a separate stylesheet; all styles are managed directly in JavaScript.
 
 ## 🔨 Build
 
