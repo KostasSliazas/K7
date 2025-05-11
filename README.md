@@ -43,8 +43,6 @@ Simple image gallery built with vanilla JavaScript (~7.7KB in size). It’s ligh
 
 ## 🔧 Configuration
 
-Custom Image Extensions and Other Configuration
-
 To override the default extension, add a data-ext attribute to the tag:
 ```
 <img src="photos/photo16.webp" loading="lazy" alt="photo16" data-ext="webp">
