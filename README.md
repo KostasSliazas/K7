@@ -33,7 +33,7 @@ Simple image gallery built with vanilla JavaScript (~7.7KB in size). It’s ligh
 ## ⚙️ Usage
 
 ```
-<div class="images-container images">
+<div class="images">
   <img src="photos/photo01.webp" loading="lazy" alt="photo01">
 </div>
 ```
