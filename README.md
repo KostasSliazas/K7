@@ -1,6 +1,10 @@
 # image gallery
 
-![Badge](https://img.shields.io/badge/License-MIT-blue) ![Badge](https://img.shields.io/badge/Build-Passing-green) ![Badge](https://img.shields.io/badge/Version-1.0.0-blue) ![Badge](https://img.shields.io/badge/Node-%3E%3D%2014.0.0-green) 
+[![License](https://img.shields.io/github/license/KostasSliazas/K7)](LICENSE)
+[![Stars](https://img.shields.io/github/stars/KostasSliazas/K7?style=social)](https://github.com/KostasSliazas/K7/stargazers)
+[![Forks](https://img.shields.io/github/forks/KostasSliazas/K7?style=social)](https://github.com/KostasSliazas/K7/forks)
+[![Issues](https://img.shields.io/github/issues/KostasSliazas/K7)](https://github.com/KostasSliazas/K7/issues)
+[![Last Commit](https://img.shields.io/github/last-commit/KostasSliazas/K7)](https://github.com/KostasSliazas/K7/commits)
 
 ## Table of Contents
 
@@ -26,7 +30,6 @@ Simple image gallery built with vanilla JavaScript (~7.7KB in size). It’s ligh
 - Autoplay Button: Automatically cycle through images when the autoplay button is clicked.
 ## Installation
 
-```bash
 Include the script inside the `head` tag using the `defer` attribute,  
 or place it just before the closing `</body>` tag for optimal loading.
 
