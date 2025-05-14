@@ -76,8 +76,9 @@ To contribute to this project, fork this repository, create a new branch, and su
 Clone the repository with the following command:
 
 ```bash
-git clone Kostas Šliažas
+git clone https://github.com/KostasSliazas/K7
 ```
+
 ## 👥 Contributors
 
 | Username | Profile |
