@@ -25,7 +25,7 @@ Simple image gallery built with vanilla JavaScript (~7.7KB in size). It’s ligh
 - Autoplay Button: Automatically cycle through images when the autoplay button is clicked.
 
 ## 🛠️ Installation
-Insert the script into the <head> tag using the defer attribute to ensure proper loading, or just before the closing </body> tag.
+<pre> Include the script by placing it inside the <code>&lt;head&gt;</code> tag with the <code>defer</code> attribute, or right before the closing <code>&lt;/body&gt;</code> tag for optimal loading performance. </pre>
 ```
 <script defer src="src/k7.min.js?v=7"></script>
 ```
