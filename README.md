@@ -38,7 +38,7 @@ or place it just before the closing `</body>` tag for optimal loading.
 ```
 ## Usage
 
-Add class `images` or all images will be selected.
+Add class `images` to parent element or all images will be selected.
 ```
 <div class="images">
   <img src="photos/photo01.webp" loading="lazy" alt="photo01">
