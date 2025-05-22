@@ -61,6 +61,7 @@ CSS background colors, update the CSS variables like so:
 CSS is encoded in Base64, which typically increases the file size. However, the CSS file is still included and can be separated from the JavaScript.
 
 Note: There's no need to include a separate stylesheet; all styles are managed directly in JavaScript.
+
 ## Build
 
 ```bash
