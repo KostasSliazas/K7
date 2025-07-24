@@ -6,229 +6,231 @@
 #k7 *,
 #k7 ::after,
 #k7 ::before {
-  box-sizing: border-box;
-  display: inline-block;
-  font: 12px/4 sans-serif;
-  position: absolute;
+box-sizing: border-box;
+display: inline-block;
+font: 12px/4 sans-serif;
+position: absolute;
 }
 #k7 .c {
-  position: relative;
+position: relative;
 }
 #k7 .b * {
-  z-index: -1;
-  pointer-events: none;
+z-index: -1;
+pointer-events: none;
 }
 #k7 {
-  background: var(--color2, #223);
-  color: #aaa;
-  position: fixed;
-  text-align: center;
-  transition: transform 0.2s;
-  user-select: none;
-  z-index: 999999;
+background: var(--color2, #223);
+color: #aaa;
+position: fixed;
+text-align: center;
+transition: transform 0.2s;
+user-select: none;
+z-index: 999999;
 }
 #k7 img {
-  background: var(--color1, #334);
-  max-height: 100%;
-  max-width: 100%;
-  transition: .2s opacity;
+background: var(--color1, #334);
+max-height: 100%;
+max-width: 100%;
 }
 #k7 #bl,
 #k7 #bt {
-  width: 160px;
-  border: 0;
-  height: 100%;
-  border-radius: 0;
+width: 160px;
+border: 0;
+height: 100%;
+border-radius: 0;
 }
 #k7 #lf::after,
 #k7 #rg::after {
-  padding: 9px;
-  top: 14px;
+padding: 9px;
+top: 14px;
 }
 #k7 #lf::after {
-  border-width: 2px 0 0 2px;
-  left: 14px;
+border-width: 2px 0 0 2px;
+left: 14px;
 }
 #k7 #rg::after {
-  right: 14px;
-  border-width: 2px 2px 0 0;
+right: 14px;
+border-width: 2px 2px 0 0;
 }
 #k7 #bl:hover #lf::after {
-  left: 9px;
+left: 9px;
 }
 #k7 #bt:hover #rg::after {
-  right: 9px;
+right: 9px;
 }
 #k7 #cl::after,
 #k7 #cl::before {
-  border-width: 0 0 0 2px;
-  height: 30px;
-  left: 23px;
-  top: 10px;
+border-width: 0 0 0 2px;
+height: 30px;
+left: 23px;
+top: 10px;
 }
 #k7 #pu::before,
 #k7 #sp {
-  border-radius: 50%;
-  height: 24px;
-  width: 24px;
+border-radius: 50%;
+height: 24px;
+width: 24px;
 }
 #k7 #sp {
-  animation: k7-r 0.3s linear infinite;
-  border-color: transparent #aaa;
-  left: 50%;
-  margin: -12px 0 0 -12px;
-  top: 50%;
+animation: k7-r 0.3s linear infinite;
+border-color: transparent #aaa;
+left: 50%;
+margin: -12px 0 0 -12px;
+top: 50%;
 }
 
 #k7 #dw {
-  border-radius: 0 0 4px 4px;
-  top: 27px;
-  height: 6px;
-  width: 24px;
-  border-top: 0;
+border-radius: 0 0 4px 4px;
+top: 27px;
+height: 6px;
+width: 24px;
+border-top: 0;
 }
 #k7 #pu::before {
-  transition: 0.2s border-radius;
-  top: 12px;
+transition: 0.2s border-radius;
+top: 12px;
 }
 #k7 #pu.q::before {
-  border-radius: 4px;
+border-radius: 4px;
 }
 #k7 #pu::after {
-  border-color: transparent #eee;
-  border-width: 4px 0 4px 9px;
-  left: 20px;
-  top: 20px;
-  width: 8px;
+border-color: transparent #eee;
+border-width: 4px 0 4px 9px;
+left: 20px;
+top: 20px;
+width: 8px;
 }
 #k7 #pu.q::after {
-  border-width: 0 2px;
-  padding-top: 8px;
+border-width: 0 2px;
+padding-top: 8px;
 }
 #k7 #dl::after {
-  border-width: 0 0 2px 2px;
-  bottom: 21px;
-  height: 12px;
-  left: 18px;
-  width: 12px;
+border-width: 0 0 2px 2px;
+bottom: 21px;
+height: 12px;
+left: 18px;
+width: 12px;
 }
 #k7 #dl::before {
-  background: #eee;
-  height: 18px;
-  left: 23px;
-  top: 9px;
-  width: 2px;
+background: #eee;
+height: 18px;
+left: 23px;
+top: 9px;
+width: 2px;
 }
 #k7 #cl {
-  top: 24px;
+top: 24px;
 }
 #k7 #dw,
 #k7 #pu::before {
-  left: 12px;
+left: 12px;
 }
 #k7 .k {
-  right: 24px;
+right: 24px;
 }
 #k7 .e {
-  left: 24px;
+left: 24px;
 }
 #k7 img,
 #k7 .t {
-  top: 50%;
-  z-index: -1;
-  transform: translateY(-50%);
+top: 50%;
+z-index: -1;
+transform: translateY(-50%);
 }
 #k7 .p::after,
 #k7 .p::before {
-  transform: rotate(45deg);
+transform: rotate(45deg);
 }
 #k7 .j::after {
-  transform: rotate(-45deg);
+transform: rotate(-45deg);
 }
 #k7 .w,
 #k7.w {
-  height: 100%;
-  width: 100%;
+height: 100%;
+width: 100%;
 }
 #k7 .u,
 #k7 .a::after,
 #k7 .s::before {
-  border: 2px solid #eee;
+border: 2px solid #eee;
 }
 #k7 .b {
-  background: 0 0;
-  height: 48px;
-  width: 48px;
-  border-radius: 7px;
-  border: 0;
-  cursor: pointer;
-  transition: opacity 0.3s 0.1s;
-  margin: 0;
-  padding: 0;
-  vertical-align: top;
-  color: inherit;
+background: 0 0;
+height: 48px;
+width: 48px;
+border-radius: 7px;
+border: 0;
+cursor: pointer;
+transition: opacity 0.3s 0.1s;
+margin: 0;
+padding: 0;
+vertical-align: top;
+color: inherit;
 }
 #k7 .b::after,
 #k7 .b::before {
-  content: '';
+content: '';
 }
 #k7 .b:focus,
 #k7 .b:hover,
 #k7 .b:hover span {
-  background: #07070733;
-  opacity: 1;
-  outline: 0;
+background: #07070733;
+opacity: 1;
+outline: 0;
 }
 #k7 #bl:focus,
 #k7 #bt:focus {
-  background: 0 0;
+background: 0 0;
 }
 #k7 .b:active {
-  opacity: 0.3;
+opacity: 0.3;
 }
 #k7 .n {
-  display: none;
+display: none;
 }
 #k7 .h,
 #k7.h {
-  opacity: 0;
+opacity: 0;
 }
 #k7 .o {
-  opacity: 0.7;
+opacity: 0.7;
 }
 #k7 .r {
-  right: 0;
+right: 0;
 }
 #k7 .y,
 #k7.y {
-  top: 0;
+top: 0;
 }
 #k7 .l,
 #k7.l {
-  left: 0;
+left: 0;
 }
 #k7.f,
 [data-f="hidden"] {
   overflow: hidden !important;
 }
 #k7.g {
-  transform: scale(0);
+transform: scale(0);
 }
 #k7 .d {
-  bottom: 24px;
-  height: 48px;
+bottom: 24px;
+height: 48px;
 }
-#sp.u + div>div img {
-  opacity: .1;
+#k7 #cn{
+transition: .2s opacity;
+}
+#k7 .u ~ #cn {
+opacity: .1;
 }
 @media (min-width: 1024px) {
   #k7:not(:hover) #cn ~ div,
   #k7:not(:hover) #in ~ .b {
-    opacity: 0;
+  opacity: 0;
   }
 }
 @media (max-width: 320px){
   #k7 .d {
-    color: transparent;
+  color: transparent;
   }
 }
