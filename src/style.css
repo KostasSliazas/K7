@@ -208,7 +208,7 @@ left: 0;
 }
 #k7.f,
 [data-f="hidden"] {
-  overflow: hidden !important;
+  overflow: hidden;
 }
 #k7.g {
 transform: scale(0);
