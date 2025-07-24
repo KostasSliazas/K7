@@ -217,10 +217,10 @@ transform: scale(0);
 bottom: 24px;
 height: 48px;
 }
-#k7 #cn #in{
+#k7 #in{
 transition: .2s opacity;
 }
-#k7 .u ~ #cn #in {
+#k7 .u + #cn #in {
 opacity: .1;
 }
 @media (min-width: 1024px) {
