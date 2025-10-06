@@ -223,7 +223,7 @@ transition: .2s opacity;
 #k7 .u + #cn #in {
 opacity: .1;
 }
-/* fade out efect on button click if required */
+/* fade out efect on button click (optional) */
 /*#k7 .b:active ~ #in {
 opacity: 0;
 } */
