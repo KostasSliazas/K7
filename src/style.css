@@ -167,6 +167,9 @@ padding: 0;
 vertical-align: top;
 color: inherit;
 }
+#k7 .b:active ~ img {
+opacity: 0;
+}
 #k7 .b::after,
 #k7 .b::before {
 content: '';
