@@ -167,9 +167,6 @@ padding: 0;
 vertical-align: top;
 color: inherit;
 }
-#k7 .b:active ~ img {
-opacity: 0;
-}
 #k7 .b::after,
 #k7 .b::before {
 content: '';
@@ -226,6 +223,10 @@ transition: .2s opacity;
 #k7 .u + #cn #in {
 opacity: .1;
 }
+/* fade out efect on button click if required */
+/*#k7 .b:active ~ #in {
+opacity: 0;
+} */
 @media (min-width: 1024px) {
   #k7:not(:hover) #cn ~ div,
   #k7:not(:hover) #in ~ .b {
