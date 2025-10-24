@@ -21,7 +21,7 @@
 
 ## Description
 
-Simple image gallery built with vanilla JavaScript (~7KB) (JS+CSS)
+Simple image gallery built with vanilla JavaScript (~7 KB, JS + CSS) — for quickly viewing images by just including the script.
 ## Features
 
 - Responsive Design: Works seamlessly on all screen sizes, from mobile to desktop.
