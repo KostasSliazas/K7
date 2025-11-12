@@ -1,4 +1,4 @@
-# image gallery
+# image gallery (Vanilla JavaScript)
 
 [![License](https://img.shields.io/github/license/KostasSliazas/K7)](LICENSE)
 [![Stars](https://img.shields.io/github/stars/KostasSliazas/K7?style=social)](https://github.com/KostasSliazas/K7/stargazers)
