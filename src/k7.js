@@ -7,7 +7,7 @@
   /** @noinline */
   function getLastPathSegment (path){
     return path.split('/').slice(-1)[0]
-  };
+  }
 
   function append(parentElement, ...childElements) {
     // Iterate over all child elements passed to the function
@@ -314,7 +314,7 @@
         if (Math.abs(diffX) > 50) {
           // clear if loop exists (autoplay)
           this.clear()
-          diffX > 0 ?  this.lefts().showGallery() : this.right().showGallery();
+          (diffX > 0 ?  this.lefts().showGallery() : this.right().showGallery());
         }
       });
     }
