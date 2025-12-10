@@ -78,11 +78,7 @@
 
         <div class="wrp" id="configuration">
 
-          <h1>Custom Image Extensions and Other Configuration</h1>
-          <p>To override the default extension, add a data-ext attribute to the &lt;img&gt; tag&mdash;e.g.,
-            &lt;img src=&quot;photos/photo16.webp&quot; loading=&quot;lazy&quot; alt=&quot;photo16&quot; data-ext=&quot;webp&quot;&gt;.
-            This replaces the default .jpg extension with .webp for higher resolution loading. If the data-ext attribute is set, it will override the default extension. If not, the extensions should match (e.g., .jpg remains .jpg). The dataset extension (index.dataset.ext ||) can be removed if unnecessary, as a micro-optimization. It does not need to be applied to .svg files.</p>
-          <p>Configurations starts [// user config].</p>
+          <h1>Other Configuration</h1>         
           <p>This image gallery should ideally maintain image proportions, but it can be adjusted differently by setting, for example: #k7 img { width: 100%; height: 100%; }. Background colors can be modified by adding, for instance: :root{ --color1: #ee7; --color2: #777; }</p>
           <p>Compiled with Google Closure: google-closure-compiler -O ADVANCED k7.js --js_output_file k7.min.js</p>
         </div>
