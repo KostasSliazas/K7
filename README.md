@@ -16,6 +16,7 @@
 * [License](#license)
 * [Contributing](#contributing)
 * [Contributors](#contributors)
+* [Disclaimer](#Disclaimer)
 * [Author](#author)
 
 
@@ -80,6 +81,10 @@ git clone https://github.com/KostasSliazas/K7
 
 - [@KostasSliazas](https://github.com/KostasSliazas)
 - [@syed-ghufran-hassan](https://github.com/syed-ghufran-hassan)
+
+## Disclaimer
+
+Please remember: this project is shared openly with the community. By downloading or using it, you agree to take responsibility for your own use. The maintainers and contributors are not liable for any issues that may arise — use it with care and enjoy building with it!
 
 ## Author
 
