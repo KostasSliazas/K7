@@ -158,7 +158,6 @@ main {
     transform: translateX(0) scaleY(1);
     opacity: 1;
     box-shadow: var(--boxsh);
-    text-align: justify;
     background: var(--black1)
 }
 
@@ -393,7 +392,6 @@ main {
 
 .pasukti .galas {
     z-index: 1;
-    text-align: justify
 }
 
 .galas {
