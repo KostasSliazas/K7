@@ -66,6 +66,9 @@ Note: There's no need to include a separate stylesheet; all styles are managed d
 ```bash
 google-closure-compiler -O ADVANCED k7.js --js_output_file k7.min.js
 ```
+
+No need to recompile for small adjustments such as the autoplay timeout.
+
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
