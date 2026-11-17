@@ -1,13 +1,11 @@
 /* jshint esversion: 6 */
-;(function(w, d){
+;((w, d) => {
   'use strict'
   /** @const @type {!Element} */
   const de = d.documentElement // Reference to the root <html>
 
   /** @noinline */
-  function getLastPathSegment (path){
-    return path.split('/').slice(-1)[0]
-  }
+  const getLastPathSegment = path => path.split('/').slice(-1)[0]
 
   function append(parentElement, ...childElements) {
     // Iterate over all child elements passed to the function
@@ -29,15 +27,14 @@
 
   class UI {
     constructor () {
+      this.imgs = null
       // user config
       this.delayShow = 1330 // Autoplay timeout
-      // this.showButtons = 1 // Display buttons by default. (true = 1 and false = 0)
-      // this.showButtonsOnPlay = 1 // Display buttons when autoplay is active.
       this.extension = 'jpg' // Additional extension for large resolution (empty = same image extension).
       this.container = 'images' // Class name for the image container. If empty, all images are selected.
       this.folder = 'large/' // Folder name or image prefix (prefix should not include '/').
 
-      // everything else for gallery (NO NEED TO CHANGE)
+      // everything else for gallery
       this.imagesArray = [] // Stores all `img` elements found in the container
       this.isAutoPlayOn = false // State to track autoplay functionality
       this.isActive = false // State to check if UI is active
@@ -83,17 +80,11 @@
         this.isAutoPlayOn = true
 
         // Set the play button active for the first time (playing)
-        /*if (this.showButtons) */this.play.className = 'b a s o c q'
-
-        // if (!this.showButtonsOnPlay) {
-          // Hide buttons if configured not to show during auto-play
-          // if (this.showButtons) {
-            this.foot.className = this.onow.className = 'n'
-          // }
-          this.left.className = this.rigt.className = this.clos.className = 'n'
-        // }
+        this.play.className = 'b a s o c q'
+        this.foot.className = this.onow.className = 'n'
+        this.left.className = this.rigt.className = this.clos.className = 'n'
       }
-      if (this.isAutoPlayOn) {
+
         // Clear any existing timeout before setting a new one
         clearTimeout(this.timeOut)
 
@@ -106,14 +97,14 @@
             this.clear()
           }
         }, this.delayShow)
-      }
+
     }
 
     // Trigger download of the current image with default file name or (with src commented out)
     downloads () {
       const a = element('a', 'rel', 'noopener', 'download', '' /*getLastPathSegment(this.imgs.src)*/, 'href', this.imgs.src, 'target', '_blank')
       a.click()
-      //a.remove() // don't always need to call .remove() for the temporary <a> element exists only in memory
+      // a.remove() // don't always need to call .remove() for the temporary <a> element exists only in memory
     }
 
     // Move to the previous image
@@ -138,12 +129,9 @@
       // same classes names
       const classNames = 'b a s o'
       // if show buttons compiled display them
-      // if (this.showButtons) {
-        // [this.foot, this.onow].forEach(el => el.className = '')
         this.foot.className = 'd e'
         this.onow.className = 'd k'
         this.play.className = classNames + ' c'
-      // }
       // always show close button on clear
       this.clos.className = classNames + ' j p k'
       this.leftRightButtonsVisibility()
@@ -159,93 +147,78 @@
     closeModal () {
       this.isActive = false
       this.imag.className = 'g h w y l'
-      //de.classList.remove('f'); //de.className.split('f').join('').trim()
       de.removeAttribute('data-f');
     }
 
     // Show the current image
     showGallery () {
-      // Retrieve the image object from imagesArray using the current indexOfImage
-      const index = this.imagesArray[/** @type {number} */ (this.indexOfImage)]
+      const index = this.imagesArray[this.indexOfImage]
 
-      // if (!index) return; // Prevent errors if index is undefined
-
-      // Get the source URL of the selected image
       const imageSource = index.src
-
-      // Extract the file name from the image source URL using getLastPathSegment function
       const fileName = getLastPathSegment(imageSource)
-
-      // Split the file name into an array using '.' as the delimiter to separate name and extension
       const arrayFileName = fileName.split('.')
-
-      // Construct the file name with the correct extension:
-      // - arrayFileName[0] is the base name of the file (everything before the first dot)
-      // - index.dataset.ext (if available) is used as the extension
-      // - Otherwise, this.extension is used if defined
-      // - If neither is available, fallback to the original extension (arrayFileName[1])
       const fileExtension = arrayFileName[0] + '.' + (index.dataset.ext || this.extension || arrayFileName[1])
 
-      // Check if the file extension starts with 'svg' (supports both 'svg' and 'svgz'):
-      // - arrayFileName.slice(-1)[0] gets the last element (the file extension)
-      // - .slice(0, 3) ensures we only check the first three characters
-      // - .toLowerCase() makes the comparison case-insensitive
       const isSvg = arrayFileName.slice(-1)[0].slice(0, 3).toLowerCase() === 'svg'
-
-      // Determine the full image path, considering whether it's an SVG:
-      // - If the file is an SVG, keep the original imageSource (no changes).
-      // - Otherwise, replace the file name in imageSource with the folder path + modified file name.
       const fullNamePrefixed = isSvg ? imageSource : imageSource.replace(fileName, this.folder + fileExtension)
 
-      // Activate the UI if not active
+      // Activate gallery
       if (!this.isActive) {
         this.isActive = true
-        //de.classList.add('f');
-        de.setAttribute('data-f', 'hidden');
+        de.setAttribute('data-f', 'hidden')
         this.imag.className = 'f w y l'
       }
 
-      // Prevent reloading if the current image matches the source
-      if (!this.imgs || this.imgs.src === fullNamePrefixed) return;
+      // Skip if the current image is already displayed
+      if (this.imgs && this.imgs.dataset.source === fullNamePrefixed) return
 
-      // Update UI state and trigger image loading
-      this.spin.className = 'u'
+        this.spin.className = 'u'
 
-      // Remove old image and append the new one
-      this.insi.removeChild(this.imgs)
-      this.imgs = element('img', 'src', fullNamePrefixed, 'class', 'c', 'alt', index.alt + ' selected')
+        // Remove previous image
+        this.imgs?.remove()
 
-      this.setDownloadText(fullNamePrefixed)
+        // Create image on demand
+        this.imgs = element('img', 'class', 'c', 'alt', index.alt + ' selected')
+        const img = this.imgs
+        img.dataset.source = fullNamePrefixed
 
-      this.imgs.onload = () => {
-        // Hide the spinner
-        this.spin.className = 'n'
-        if (this.isAutoPlayOn) {
-          this.autoPlayLoop()
+        this.setDownloadText(fullNamePrefixed)
+
+        img.onload = () => {
+          if (this.imgs !== img) return
+
+            this.spin.className = 'n'
+
+            if (this.isAutoPlayOn) {
+              this.autoPlayLoop()
+            }
         }
-      }
 
-      this.imgs.onerror = e => {
-        e.target.onerror = null
-        e.target.src = imageSource
-        this.setDownloadText(fileName)
-      }
+        img.onerror = () => {
+          if (this.imgs !== img) return
 
-      if (this.fine) this.fine.textContent = this.indexOfImage + 1
-      append(this.insi, this.imgs)
+            img.onerror = null
+            img.src = imageSource
+            this.setDownloadText(fileName)
+        }
 
-      // don't change left right visibility'
-      if (this.isAutoPlayOn /*&& !this.showButtonsOnPlay*/) return
+        img.src = fullNamePrefixed
+        append(this.insi, img)
 
-      this.leftRightButtonsVisibility()
+        if (this.fine) this.fine.textContent = this.indexOfImage + 1
+
+          // Don't change left/right visibility during autoplay
+          if (this.isAutoPlayOn) return
+
+          this.leftRightButtonsVisibility()
     }
 
     // Listen for clicks on images and show the corresponding image
     listenForIG (e) {
       const target = e.target
+
       if (target.tagName === 'IMG') {
-        const imgIndex = this.imagesArray.indexOf(target);
-        this.indexOfImage = imgIndex > -1 ? imgIndex : 0;
+        this.indexOfImage = this.imagesArray.indexOf(target)
         this.showGallery()
         e.stopImmediatePropagation()
       }
@@ -262,45 +235,45 @@
       // prettier-ignore
       /** @suppress {missingProperties} */
       const k = {
-        'bl': () => this.lefts().showGallery(), // Move left action (chained methods)
-        'bt': () => this.right().showGallery(), // Move right action (chained methods)
-        'pu': () => this.autoPlayLoop(), // Play/pause action
-        'dl': () => this.downloads(), // Download action
-        'cl': () => this.closeModal() // Close action
+        'bl': () => this.lefts().showGallery(),
+        'bt': () => this.right().showGallery(),
+        'pu': () => this.autoPlayLoop(),
+        'dl': () => this.downloads(),
+        'cl': () => {
+          this.clear()
+          this.closeModal()
+        }
       }
 
       // Map additional keys to specific actions
       k[' '] = k['pu'] // Space for play/pause
       k['ArrowLeft'] = k['bl'] // Left arrow for left navigation
       k['ArrowRight'] = k['bt'] // Right arrow for right navigation
-      // k[`Escape`] = k['cl'] // close gallery
+      k['Escape'] = k['cl']
 
       // Unified event handler
       const switcher = e => {
-        // Only proceed if the gallery is active
-        if (this.isActive) {
-          // Prevent default behavior and stop event propagation
-          e.preventDefault()
-          e.stopImmediatePropagation()
-          // Get the event key or target ID
+        if (!this.isActive || e.isComposing) return
+
           const ev = e.key || e.target.id
-          // Handle Escape and cl separately
-          if (ev === 'Escape' || ev === 'cl') {
-            this.closeModal()
+          const action = k[ev]
+
+          if (this.isAutoPlayOn) {
+            this.clear()
+            if (ev === ' ') return
           }
-          // Check for valid key and other conditions
-          if (!k[ev] || this.isAutoPlayOn || e.isComposing) {
-            this.clear() // Execute the corresponding action or clear the state if no match
-            return
-          }
-          // Execute the corresponding action
-          k[ev]()
-        }
+
+          if (!action) return
+
+            e.preventDefault()
+            e.stopImmediatePropagation()
+            action()
       }
 
+
       // Attach event listeners for click and keyboard events with correct context (bind this)
-      this.imag.addEventListener('click', switcher.bind(this))
-      w.addEventListener('keyup', switcher.bind(this))
+      this.imag.addEventListener('click', switcher)
+      w.addEventListener('keyup', switcher)
 
       // Attach events for touch
       let touchStartX = 0;
@@ -312,9 +285,10 @@
       this.imag.addEventListener("touchend", e => {
         const diffX = e.changedTouches[0].clientX - touchStartX;
         if (Math.abs(diffX) > 50) {
-          // clear if loop exists (autoplay)
           this.clear()
-          (diffX > 0 ?  this.lefts().showGallery() : this.right().showGallery());
+          if (diffX > 0) this.lefts()
+          else this.right()
+          this.showGallery()
         }
       });
     }
@@ -349,11 +323,8 @@
       this.insi = element('div', 'id', 'in', 'class', 'c w')
       /** @type {HTMLElement} */
       this.spin = element('div', 'id', 'sp', 'class', 'n', 'aria-hidden', 'true')
-      /** @type {HTMLElement} */
-      this.imgs = element('img', 'class', 'c', 'src', 'data:image/gif;base64,R0lGODlhAQABAPAAAP///wAAACwAAAAAAQABAEACAkQBADs=', 'alt', '', 'loading', 'lazy')
       // append(this.left, d.createTextNode('Previous')); // to add text to button for Previous
       // append(this.rigt, d.createTextNode('Next'));  // to add text to button for Next
-      append(this.insi, this.imgs)
       append(this.rigt, this.irig)
       append(this.left, this.ilef)
       append(this.imag, this.spin, this.cent)
